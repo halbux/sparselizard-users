@@ -10,4 +10,4 @@ details on the math is always welcome (e.g. deriving the strong form equation fr
 Do not forget to credit all contributors including yourself.
 
 The contributions are provided 'as is' without any legal guarantee. The examples might have been cross-checked by
-the community but there is NO GUARANTEE that anyone else than the author has seen it.
+the community but there is NO GUARANTEE that anyone else than the author has checked it.
