@@ -8,4 +8,4 @@ Please provide a description in the main.cpp of the example and as many comments
 link to a paper used for validation as well as details on the math is always welcome (e.g. deriving the strong form 
 equation from a known set of equations). Do not forget to credit all contributors including yourself.
 
-No legal guarantee is provided on the examples.
+The contributions are provided 'as is' without any legal guarantee.
