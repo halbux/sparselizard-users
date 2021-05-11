@@ -1,5 +1,5 @@
 # sparselizard-users
-Open area for user contributions. We thank you for your kind contribution.
+Open area for user contributions. We thank you for your help.
 
 This is the place to provide your sparselizard example code or any other contribution of interest to the community.
 
