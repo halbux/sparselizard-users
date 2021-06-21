@@ -1,7 +1,7 @@
 // This code illustrates the setup for a nonlinear electro-thermal simulation of a 3D HTS tape.
 // The four main layers of interest are taken into account (see 'tape.geo'): Cu-Substrate-HTS-Cu
 // with realistic sizes (30 cm long, 5 mm wide, 2 um thick HTS, 20 um thick Cu and 100 um thick substrate).
-// A transient analysis is performed from an initial 4.5 K to a hotspot temperature of 150 K.
+// A transient analysis is performed from an initial 77 K to a hotspot temperature of 150 K.
 // Quench is initiated by bringing a 'heater' portion of the HTS layer initially into its normal zone.
 // Material properties are taken from literature and should be realistic in the temperature
 // range from  < 4 to > 150 K and for external magnetic fields from about 1 to 10 T.
@@ -36,13 +36,13 @@ int main(void)
     int tape = selectall();
 
      // Input current [A]:
-    double Iin = 500;
+    double Iin = 50;
     // Operating temperature [K]:
-    double Top = 4.5;
+    double Top = 77;
     // Residual resistivity ratio of copper
     double RRR = 10.0;
     // External magnetic field strength [T] and angle:
-    double Bzext = 4.5, theta = getpi()/2.0;
+    double Bzext = 1, theta = getpi()/2.0;
 	
     
     // Electric potential field v [V] and temperature T [K]:
@@ -51,9 +51,6 @@ int main(void)
     // Initial interpolation orders before p-adaptivity:
     v.setorder(tape, 1);
     T.setorder(tape, 1);
-    
-    // External magnetic field:
-    expression Bext = norm( array3x1(0,0,-Bzext) );
 
     // Electric field [V/m]:
     expression E = -grad(v);
@@ -71,7 +68,7 @@ int main(void)
     T.setconstraint(out, Top);
     
     
-    expression sigmarebco = sigma_rebco(T, E, Bext, theta); // [ohm^-1.m^-1] computes the conductivity of rebco
+    expression sigmarebco = sigma_rebco(T, E, Bzext, theta); // [ohm^-1.m^-1] computes the conductivity of rebco
 
     // Rebco thermal conductivity data (van Nugteren). Range x : T (1[K], 300[K]). y : thermal conductivity [W/(K.m)]
     expression krebco(spline("rebco_k.txt"), T);
@@ -80,8 +77,8 @@ int main(void)
     expression cprebco(spline("rebco_cp.txt"), T);
 
     // Copper:
-    expression rcu = resistivity_cu(RRR, T, Bext);  // [ohm.m] computes the resistivity of Copper
-    expression kcu = k_cu(RRR, T, Bext);            // [W / (K.m)] computes the thermal conductivity of Copper
+    expression rcu = resistivity_cu(RRR, T, Bzext);  // [ohm.m] computes the resistivity of Copper
+    expression kcu = k_cu(RRR, T, Bzext);            // [W / (K.m)] computes the thermal conductivity of Copper
     expression cpcu = cp_cu(T);                  // [J / (kg.K)] computes the heat capacity of Copper
 
     // Substrate (Hastelloy) properties are extracted from J. Lu (2008) paper
@@ -124,8 +121,8 @@ int main(void)
     
     
     // P-adaptivity settings (see doc):
-    int maxTorder = 2, maxVorder = 3;
-    T.setorder(0.02, 1, maxTorder, 0);
+    int maxTorder = 3, maxVorder = 3;
+    T.setorder(0.001, 1, maxTorder, 0);
     v.setorder(0.001, 1, maxVorder, 1e-4);
     // H-adaptivity settings (see doc):
     expression hcrit = ifpositive(fieldorder(T) - (maxTorder-0.5), 1, 0);
@@ -139,10 +136,8 @@ int main(void)
     // Heating from the current flow.
     // Note: due to the limited ~16 digits accuracy of 'double' and the large range of
     // electric conductivities (from 1 up to 1e15 max limit in the HTS) there is a very tiny
-    // but non-zero current flowing in the other layers than the HTS, even at operating temperature.
-    // This might cause a very slow artificial heating for very large supply currents,
-    // especially when no convection term is added to the heat equations.
-    // Check the tape temperature far from the quench to be sure it remains at around 4.5 K.
+    // but non-zero current flowing in the other layers than the HTS, even at very low temperatures (< 10 K).
+    // This might cause a very slow artificial heating for very large supply currents and very low temperatures.
     heattransient += integral(tape, -j*E*tf(T) );
 
     formulation currentflow;
@@ -174,7 +169,7 @@ int main(void)
     ga.setparameter(1);
     
     // Time-adaptivity: lower the first argument for a finer timestepping.
-    ga.setadaptivity(20, 100e-9, 1e-3);
+    ga.setadaptivity(0.04, 1e-3, 500e-3);
     
     double Tmax = -1;
     std::vector<double> allTmax = {};
@@ -195,7 +190,7 @@ int main(void)
         j.write(tape, "j"+std::to_string(ga.count())+".vtu", maxVorder);
         grouptimesteps("j.pvd", "j", 1, ga.gettimes());
         
-        v.write(skin, "v"+std::to_string(ga.count())+".vtu", maxVorder);
+        v.write(tape, "v"+std::to_string(ga.count())+".vtu", maxVorder);
         grouptimesteps("v.pvd", "v", 1, ga.gettimes());
     
         fieldorder(T).write(skin, "foT"+std::to_string(ga.count())+".vtu", 1);

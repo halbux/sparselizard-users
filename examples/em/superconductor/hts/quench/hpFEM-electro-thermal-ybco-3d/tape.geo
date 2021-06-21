@@ -1,5 +1,5 @@
 
-l = 301e-3; lh = 5e-3; w = 5e-3;
+l = 300e-3; lh = 5e-3; w = 5e-3;
 
 thbotcu = 20e-6; thtopcu = 20e-6; thsubstr = 100e-6; threbco = 2.0e-6;
 
