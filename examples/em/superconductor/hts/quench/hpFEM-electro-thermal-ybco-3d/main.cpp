@@ -53,7 +53,7 @@ int main(void)
     T.setorder(tape, 1);
     
     // External magnetic field:
-	expression Bext = norm( array3x1(0,0,-Bzext) );
+    expression Bext = norm( array3x1(0,0,-Bzext) );
 
     // Electric field [V/m]:
     expression E = -grad(v);
