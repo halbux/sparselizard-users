@@ -169,7 +169,7 @@ int main(void)
     ga.setparameter(1);
     
     // Time-adaptivity: lower the first argument for a finer timestepping.
-    ga.setadaptivity(0.04, 1e-3, 500e-3);
+    ga.setadaptivity(0.04, 50e-3, 500e-3);
     
     double Tmax = -1;
     std::vector<double> allTmax = {};
