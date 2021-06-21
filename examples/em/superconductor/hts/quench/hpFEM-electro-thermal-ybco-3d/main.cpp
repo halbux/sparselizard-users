@@ -9,7 +9,7 @@
 // Thanks to H. Milanchian for the material properties.
 // For any possible mistake please blame A. Halbach.
 //
-// Developped on sparselizard 202106.1 ('discrete dawn').
+// Developed on sparselizard 202106.1 ('discrete dawn').
 
 
 #include "sparselizard.h"
