@@ -16,6 +16,6 @@ The inductance is linked to the speed of electromagnetic waves for that transmis
 
 ( with c being the speed of light in vacuum )
 
-In order to find the effective, we need to run the simulation with and without dielectric, as it is defined as the change of voltage ( or change of capacitance )
+In order to find the effective permittivity, we need to run the simulation with and without dielectric, as it is defined as the change of voltage.
 
 A scilab validation code is provided and is based on Wheeler's model. That model is not exact: the error in impedance is usually less than 1%, but always less than 2%.
