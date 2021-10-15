@@ -11,4 +11,5 @@ Do not forget to credit all contributors including yourself.
 
 The contributions are provided 'as is' without any legal guarantee. The examples might have been cross-checked by
 the community but there is NO GUARANTEE that anyone else than the author has checked it.
-Please check the license with each contributor.
+
+Check the license with each contributor.
