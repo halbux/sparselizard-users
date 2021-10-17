@@ -4,7 +4,6 @@ namespace py = pybind11;
 
 void init_expression(py::module &m)
 {
-    //py::class_<expression, std::shared_ptr<expression> >(m, "expression")
     py::class_<expression>(m, "expression")
         .def(py::init<>())
         .def(py::init<field>(), py::arg("input"))
