@@ -2,6 +2,8 @@
 
 namespace py = pybind11;
 
+// class expression
+
 void init_expression(py::module &m)
 {
     py::class_<expression>(m, "expression")
