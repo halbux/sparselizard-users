@@ -103,9 +103,39 @@ void init_expression(py::module &m)
 
         .def("expand", &expression::expand)
 
-        .def("__neg__", static_cast<expression (expression::*)()>(&expression::operator-))
+        /*
+        .def(-py::self)
+
+        .def(py::self + py::self)
+        .def(py::self - py::self)
+        .def(py::self * py::self)
+        .def(py::self / py::self)
+
+        .def(double() + py::self)
+        .def(double() + py::self)
+        .def(double() + py::self)
+        .def(double() + py::self)
+
+        .def(parameter() + py::self)
+        .def(parameter() + py::self)
+        .def(parameter() + py::self)
+        .def(parameter() + py::self)
+
+        .def(field() + py::self)
+        .def(field() + py::self)
+        .def(field() + py::self)
+        .def(field() + py::self)
+
+        .def(port() + py::self)
+        .def(port() + py::self)
+        .def(port() + py::self)
+        .def(port() + py::self)
+        */
 
         // operator (expression,expression)
+
+        .def("__neg__", static_cast<expression (expression::*)()>(&expression::operator-))
+
         .def("__add__", [](expression &a, expression &b) { return a + b;}, py::is_operator())
         .def("__sub__", [](expression &a, expression &b) { return a - b;}, py::is_operator())
         .def("__mul__", [](expression &a, expression &b) { return a * b;}, py::is_operator())
@@ -135,4 +165,10 @@ void init_expression(py::module &m)
         .def("__rmul__", [](expression &a, port &b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](expression &a, port &b) { return expression(b)/a;}, py::is_operator())
     ;
+
+    py::implicitly_convertible<double, expression>();
+    py::implicitly_convertible<int, expression>();
+    py::implicitly_convertible<parameter, expression>();
+    py::implicitly_convertible<field, expression>();
+    py::implicitly_convertible<port, expression>();
 }

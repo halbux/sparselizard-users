@@ -45,10 +45,4 @@ PYBIND11_MODULE(pysparselizard, m) {
     init_impliciteuler(m);
     init_sl(m);
     init_wallclock(m);
-
-    py::implicitly_convertible<double, expression>();
-    py::implicitly_convertible<int, expression>();
-    py::implicitly_convertible<parameter, expression>();
-    py::implicitly_convertible<field, expression>();
-    py::implicitly_convertible<port, expression>();
 }

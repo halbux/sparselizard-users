@@ -8,10 +8,9 @@ void init_formulation(py::module &m)
     py::class_<formulation>(m, "formulation")
         .def(py::init<>())
 
-        .def("__iadd__", static_cast<void (formulation::*)(expression)>(&formulation::operator+=), py::arg("expression"))
-        
+        .def("__iadd__", static_cast<formulation& (formulation::*)(expression)>(&formulation::operator+=), py::arg("expression"))
         .def("__iadd__", static_cast<formulation& (formulation::*)(integration)>(&formulation::operator+=), py::arg("integrationobject"))
-        .def("__iadd__", static_cast<void (formulation::*)(std::vector<integration>)>(&formulation::operator+=), py::arg("integrationobject"))
+        .def("__iadd__", static_cast<formulation& (formulation::*)(std::vector<integration>)>(&formulation::operator+=), py::arg("integrationobject"))
 
         .def("countdofs", &formulation::countdofs)
         .def("allcountdofs", &formulation::allcountdofs)
