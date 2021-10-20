@@ -15,6 +15,7 @@ void init_field(py::module &);
 void init_port(py::module &);
 void init_integration(py::module &);
 void init_formulation(py::module &);
+void init_shape(py::module &);
 void init_genalpha(py::module &);
 void init_impliciteuler(py::module &);
 void init_universe(py::module &);
@@ -40,6 +41,7 @@ PYBIND11_MODULE(pysparselizard, m) {
     init_port(m);
     init_integration(m);
     init_formulation(m);
+    init_shape(m);
     init_universe(m);
     init_genalpha(m);
     init_impliciteuler(m);
