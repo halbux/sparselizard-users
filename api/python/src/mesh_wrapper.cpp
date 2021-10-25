@@ -9,14 +9,22 @@ void init_mesh(py::module &m)
     //py::class_<mesh, std::shared_ptr<mesh> >(m, "mesh")
     py::class_<mesh>(m, "mesh")
         .def(py::init<>())
-        .def(py::init<std::string,int>(), py::arg("name"), py::arg("verbosity")=1)
+        .def(py::init<std::string, int>(), py::arg("name"), py::arg("verbosity")=1)
+        .def(py::init<std::string, int, int, int>(), py::arg("name"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers"), py::arg("verbosity")=1)
+        .def(py::init<bool, std::vector<std::string>, int>(), py::arg("mergeduplicates"), py::arg("meshfiles"), py::arg("verbosity")=1)
+        .def(py::init<std::vector<shape>, int>(), py::arg("inputshapes"), py::arg("verbosity")=1)
+        .def(py::init<std::vector<shape>, int, int, int>(), py::arg("inputshapes"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers"), py::arg("verbosity")=1)
 
         .def("load", static_cast<void (mesh::*)(std::string, int)>(&mesh::load), py::arg("name"), py::arg("verbosity")=1)
         .def("load", static_cast<void (mesh::*)(std::string, int,int,int)>(&mesh::load), py::arg("name"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers")=1, py::arg("verbosity")=1)
         .def("load", static_cast<void (mesh::*)(bool, std::vector<std::string>, int)>(&mesh::load), py::arg("mergeduplicates"), py::arg("meshfiles")=1, py::arg("verbosity")=1)
+        .def("load", static_cast<void (mesh::*)(std::vector<shape>, int)>(&mesh::load), py::arg("inputshapes"), py::arg("verbosity")=1)
+        .def("load", static_cast<void (mesh::*)(std::vector<shape>, int,int,int)>(&mesh::load), py::arg("inputshapes"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers")=1, py::arg("verbosity")=1)
 
         .def("write", &mesh::write, py::arg("name"), py::arg("verbosity")=1)
+
         .def("setadaptivity", &mesh::setadaptivity, py::arg("criterion"), py::arg("lownumsplits"), py::arg("highnumsplits"))
+
         .def("split", &mesh::split, py::arg("n")=1)
 
         .def("move", static_cast<void (mesh::*)(int, expression)>(&mesh::move), py::arg("physreg"), py::arg("u"))
