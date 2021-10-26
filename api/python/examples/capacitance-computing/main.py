@@ -27,8 +27,8 @@ epsilon[dielectric] = 3.9 * 8.854e-12
 V = port(); Q = port();
 
 v.setport(electrode, V, Q);
-#                   |  |
-#         primal port  dual port
+#                    |  |
+#          primal port  dual port
 #
 # The dual port holds the global Neumann term on the port region.
 # For an electrostatic formulation this equals the electrode charge.
