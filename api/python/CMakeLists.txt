@@ -15,7 +15,7 @@ set (PYBIND11_DIR "/usr/include/pybind11")
 set (SPARSELIZARD_DIR "../")
 set (SPARSELIZARD_SRC "${SPARSELIZARD_DIR}/src")
 
-set (PETSC_DIR "/home/hbadi/SLlibs/petsc")
+set (PETSC_DIR "~/SLlibs/petsc")
 set (PETSC_ARCH "arch-linux-c-opt")
 
 include_directories(
