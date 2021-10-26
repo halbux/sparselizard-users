@@ -12,7 +12,7 @@ set (CMAKE_CXX_FLAGS "-fPIC")
 set (PYTHON_DIR "/usr/include/python3.9")
 set (PYBIND11_DIR "/usr/include/pybind11")
 
-set (SPARSELIZARD_DIR "../")
+set (SPARSELIZARD_DIR "../../../../sparselizard")
 set (SPARSELIZARD_SRC "${SPARSELIZARD_DIR}/src")
 
 set (PETSC_DIR "~/SLlibs/petsc")
@@ -69,5 +69,5 @@ add_library(pinelizard SHARED
 
 SET_TARGET_PROPERTIES(pinelizard PROPERTIES PREFIX "")
 target_link_libraries(pinelizard sparselizard petsc slepc)
-target_link_directories(pinelizard PUBLIC ../ ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
+target_link_directories(pinelizard PUBLIC ../../../../sparselizard/build ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
 
