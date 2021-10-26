@@ -1,3 +1,5 @@
+# Thanks to H. Badi for bringing sparselizard python bindings to the project.
+
 cmake_minimum_required(VERSION 3.10)
 
 project(pinelizard LANGUAGES CXX VERSION 1.0 DESCRIPTION "sparselizard python wrapper")
