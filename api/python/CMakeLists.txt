@@ -21,8 +21,7 @@ set (PETSC_ARCH "arch-linux-c-opt")
 include_directories(
     ${SPARSELIZARD_SRC}
     ${SPARSELIZARD_SRC}/mesh
-    ${SPARSELIZARD_SRC}/shapefunction
-    ${SPARSELIZARD_SRC}/shapefunction/hierarchical
+    ${SPARSELIZARD_SRC}/shape
     ${SPARSELIZARD_SRC}/field
     ${SPARSELIZARD_SRC}/expression
     ${SPARSELIZARD_SRC}/expression/operation
@@ -30,6 +29,8 @@ include_directories(
     ${SPARSELIZARD_SRC}/gausspoint
     ${SPARSELIZARD_SRC}/geometry
     ${SPARSELIZARD_SRC}/resolution
+    ${SPARSELIZARD_SRC}/shapefunction
+    ${SPARSELIZARD_SRC}/shapefunction/hierarchical
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical/h1
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical/hcurl
     ${SPARSELIZARD_SRC}/shapefunction/lagrange
@@ -48,6 +49,7 @@ include_directories(
 
 add_library(pinelizard SHARED
     src/mesh_wrapper.cpp
+    src/shape_wrapper.cpp
     src/expression_wrapper.cpp
     src/parameter_wrapper.cpp
     src/parameterselectedregion_wrapper.cpp
