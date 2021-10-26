@@ -14,3 +14,4 @@ void init_wallclock(py::module &m)
         .def("resume", &wallclock::resume)
     ;
 }
+

@@ -24,3 +24,4 @@ void init_mat(py::module &m)
         .def("copy", &mat::copy)
     ;
 }
+

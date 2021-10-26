@@ -33,3 +33,4 @@ void init_genalpha(py::module &m)
         .def("next", static_cast<int (genalpha::*)(double, int)>(&genalpha::next), py::arg("fomuls"), py::arg("maxnumnlit"))
     ;
 }
+

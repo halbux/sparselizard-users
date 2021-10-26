@@ -35,3 +35,4 @@ void init_vec(py::module &m)
         .def("sum", &vec::sum)
     ;
 }
+

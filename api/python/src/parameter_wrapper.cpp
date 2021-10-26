@@ -18,7 +18,7 @@ void init_parameter(py::module &m)
 
         .def("__or__", static_cast<parameterselectedregion (parameter::*)(int)>(&parameter::operator|))
 
-        .def("__setitem__", static_cast<void (parameter::*)(int, expression)>(&parameter::setValue), py::arg("physreg"), py::arg("input"))
+        .def("__setitem__", static_cast<void (parameter::*)(int, expression)>(&parameter::setvalue), py::arg("physreg"), py::arg("input"))
 
         .def("max", static_cast<std::vector<double> (parameter::*)(int, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("max", static_cast<std::vector<double> (parameter::*)(int, expression, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<bool>{})
@@ -59,3 +59,4 @@ void init_parameter(py::module &m)
         .def("__rtruediv__", [](parameter &a, expression &b) { return b/a;}, py::is_operator())
     ;
 }
+

@@ -5,6 +5,7 @@ namespace py = pybind11;
 void init_sl(py::module &m)
 {
     m.def("getpi", &sl::getpi);
+    m.def("getrandom", &sl::getrandom);
 
     m.def("selectunion", &sl::selectunion, py::arg("physregs"));
     m.def("selectintersection", &sl::selectintersection, py::arg("physregs"));
@@ -138,6 +139,7 @@ void init_sl(py::module &m)
     m.def("tf", [](expression &input, int physreg) { return sl::tf(input, physreg);}, py::arg("input"), py::arg("physreg"));
 
     m.def("adapt", &sl::adapt, py::arg("verbosity")=0);
+    m.def("alladapt", &sl::alladapt, py::arg("verbosity")=0);
     m.def("zienkiewiczzhu", &sl::zienkiewiczzhu, py::arg("input"));
 
     m.def("array1x1", &sl::array1x1);
@@ -196,3 +198,4 @@ void init_sl(py::module &m)
     m.def("predefinedstabilization", &sl::predefinedstabilization, py::arg("stabtype"), py::arg("delta"), py::arg("f"), py::arg("v"), py::arg("diffusivity"), py::arg("residual"));
 
 }
+

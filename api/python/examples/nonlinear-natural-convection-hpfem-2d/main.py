@@ -1,4 +1,4 @@
-from pysparselizard import *
+from pinelizard import *
 
 mymesh = mesh("natconv.msh")
 

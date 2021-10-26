@@ -44,3 +44,4 @@ void init_formulation(py::module &m)
         .def("allsolve", static_cast<std::vector<double> (formulation::*)(std::vector<int>, std::vector<std::vector<int>>, std::vector<std::vector<int>>, double, int, std::string, int)>(&formulation::allsolve), py::arg("formulterms"), py::arg("physicalterms"), py::arg("artificialterms"), py::arg("relrestol"), py::arg("maxnumit"), py::arg("soltype")="lu", py::arg("verbosity")=1)
     ;
 }
+

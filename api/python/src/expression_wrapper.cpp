@@ -172,3 +172,4 @@ void init_expression(py::module &m)
     py::implicitly_convertible<field, expression>();
     py::implicitly_convertible<port, expression>();
 }
+

@@ -46,3 +46,4 @@ void init_port(py::module &m)
         .def("__rtruediv__", [](port &a, double b) { return expression(b)/a;}, py::is_operator())
     ;
 }
+

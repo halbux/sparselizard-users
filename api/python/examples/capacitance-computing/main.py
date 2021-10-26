@@ -1,4 +1,4 @@
-from pysparselizard import *
+from pinelizard import *
 
 dielectric = 1; air = 2; electrode = 3; ground = 4;
     
@@ -55,5 +55,4 @@ v.write(all, "v.pos", 2);
 
 # Code validation line. Can be removed.
 print( (C < 1.30635e-10) and (C > 1.30633e-10))
-
 

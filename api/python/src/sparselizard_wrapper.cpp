@@ -23,9 +23,9 @@ void init_wallclock(py::module &);
 void init_sl(py::module &);
 
 
-PYBIND11_MODULE(pysparselizard, m) {
+PYBIND11_MODULE(pinelizard, m) {
 
-    m.doc() = "This is a Python binding of C++ Sparselizard Library";
+    m.doc() = "This is the python binding for the sparselizard c++ library";
     m.def("printversion", &sl::printversion);
     m.def("getversion", &sl::getversion);
     m.def("getsubversion", &sl::getsubversion);
@@ -48,3 +48,4 @@ PYBIND11_MODULE(pysparselizard, m) {
     init_sl(m);
     init_wallclock(m);
 }
+

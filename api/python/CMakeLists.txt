@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(pysparselizard LANGUAGES CXX VERSION 1.0 DESCRIPTION "sparselizard python wrapper")
+project(pinelizard LANGUAGES CXX VERSION 1.0 DESCRIPTION "sparselizard python wrapper")
 set(CMAKE_CXX_STANDARD 11)
 
 set(DEFAULT_BUILD_TYPE "Release")
@@ -9,7 +9,7 @@ set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}" CACHE STRING "Choose the type of bu
 set (CMAKE_CXX_COMPILER "g++")
 set (CMAKE_CXX_FLAGS "-fPIC")
 
-set (PYTHON_DIR "/usr/include/python3.8")
+set (PYTHON_DIR "/usr/include/python3.9")
 set (PYBIND11_DIR "/usr/include/pybind11")
 
 set (SPARSELIZARD_DIR "../")
@@ -33,7 +33,6 @@ include_directories(
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical/h1
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical/hcurl
     ${SPARSELIZARD_SRC}/shapefunction/lagrange
-    ${SPARSELIZARD_SRC}/shapefunction/hierarchical/meca
     ${SPARSELIZARD_SRC}/io
     ${SPARSELIZARD_SRC}/io/gmsh
     ${SPARSELIZARD_SRC}/io/nastran
@@ -47,8 +46,7 @@ include_directories(
     ${PYBIND11_DIR}
 )
 
-
-add_library(pysparselizard SHARED
+add_library(pinelizard SHARED
     src/mesh_wrapper.cpp
     src/expression_wrapper.cpp
     src/parameter_wrapper.cpp
@@ -69,6 +67,7 @@ add_library(pysparselizard SHARED
 
 #find_library(SPARSELIZARD_LIBRARY NAMES libsparselizard.so ${SPARSELIZARD_DIR})
 
-SET_TARGET_PROPERTIES(pysparselizard PROPERTIES PREFIX "")
-target_link_libraries(pysparselizard sparselizard petsc slepc)
-target_link_directories(pysparselizard PUBLIC ../ ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
+SET_TARGET_PROPERTIES(pinelizard PROPERTIES PREFIX "")
+target_link_libraries(pinelizard sparselizard petsc slepc)
+target_link_directories(pinelizard PUBLIC ../ ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
+

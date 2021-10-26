@@ -32,3 +32,4 @@ void init_impliciteuler(py::module &m)
         .def("next", static_cast<int (impliciteuler::*)(double, int)>(&impliciteuler::next), py::arg("timestep"), py::arg("maxnumnlit"))
     ;
 }
+

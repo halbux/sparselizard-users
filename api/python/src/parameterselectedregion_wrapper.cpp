@@ -9,3 +9,4 @@ void init_parameterselectedregion(py::module &m)
         .def("__set__", static_cast<void (parameterselectedregion::*)(expression)>(&parameterselectedregion::operator=))
     ;
 }
+
