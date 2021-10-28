@@ -5,6 +5,8 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 namespace py = pybind11;
 
+void init_densemat(py::module &);
+void init_indexmat(py::module &);
 void init_vec(py::module &);
 void init_mat(py::module &);
 void init_mesh(py::module &);
@@ -31,6 +33,8 @@ PYBIND11_MODULE(pinelizard, m) {
     m.def("getsubversion", &sl::getsubversion);
     m.def("getversionname", &sl::getversionname);
 
+    init_densemat(m);
+    init_indexmat(m);
     init_vec(m);
     init_mat(m);
     init_mesh(m);

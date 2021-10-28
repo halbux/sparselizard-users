@@ -50,6 +50,8 @@ include_directories(
 )
 
 add_library(pinelizard SHARED
+    src/densemat_wrapper.cpp
+    src/indexmat_wrapper.cpp
     src/mesh_wrapper.cpp
     src/shape_wrapper.cpp
     src/expression_wrapper.cpp
