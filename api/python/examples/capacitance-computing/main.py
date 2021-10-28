@@ -14,7 +14,7 @@ v = field("h1")
 v.setorder(all, 3)
 
 # Ground:
-v.setconstraint(ground);
+v.setconstraint(ground)
 
 # Electric permittivity
 epsilon = parameter()
@@ -26,31 +26,31 @@ epsilon[dielectric] = 3.9 * 8.854e-12
 # The electrode is supposed to be a perfect conductor with a constant v.
 V = port(); Q = port();
 
-v.setport(electrode, V, Q);
+v.setport(electrode, V, Q)
 #                    |  |
 #          primal port  dual port
 #
 # The dual port holds the global Neumann term on the port region.
 # For an electrostatic formulation this equals the electrode charge.
 
-electrostatics = formulation();
+electrostatics = formulation()
 
 # Set a 0.1 nC charge per unit depth on the electrode:
-electrostatics += Q - 0.1e-9;
+electrostatics += Q - 0.1e-9
 
-electrostatics += integral(all, -epsilon * grad(dof(v)) * grad(tf(v)));
+electrostatics += integral(all, -epsilon * grad(dof(v)) * grad(tf(v)))
 
 # Generate, solve and transfer the solution to field v and to the ports:
-electrostatics.solve();
+electrostatics.solve()
 
 # Compute the capacitance:
-C = Q.getvalue() / V.getvalue();
+C = Q.getvalue() / V.getvalue()
 
 print(' Capacitance is ',  C , ' F per unit depth')
 print(' Electrode voltage is ' , V.getvalue() , ' V')
 
 # Write v and E for illustration:
-v.write(all, "v.pos", 2);
+v.write(all, "v.pos", 2)
 (-grad(v)).write(all, "E.pos", 2);
 
 # Code validation line. Can be removed.

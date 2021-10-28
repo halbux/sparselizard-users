@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_genalpha(py::module &m)
 {
-    //py::class_<genalpha, std::shared_ptr<genalpha> >(m, "genalpha")
     py::class_<genalpha>(m, "genalpha")
+    
         .def(py::init<formulation, vec, vec, int, std::vector<bool>>(), py::arg("formul"), py::arg("initspeed"), py::arg("initacceleration"), py::arg("verbosity"), py::arg("isrhskcconstant") = std::vector<bool>{false, false, false, false})
 
         .def("setverbosity", &genalpha::setverbosity, py::arg("verbosity"))
@@ -31,6 +31,7 @@ void init_genalpha(py::module &m)
 
         .def("next", static_cast<void (genalpha::*)(double)>(&genalpha::next), py::arg("timestep"))
         .def("next", static_cast<int (genalpha::*)(double, int)>(&genalpha::next), py::arg("fomuls"), py::arg("maxnumnlit"))
+        
     ;
 }
 

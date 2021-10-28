@@ -5,6 +5,7 @@ namespace py = pybind11;
 void init_indexmat(py::module &m)
 {
     py::class_<indexmat>(m, "indexmat")
+    
         .def(py::init<>())
         .def(py::init<int, int>(), py::arg("numberofrows"), py::arg("numberofcolumns"))
         .def(py::init<int, int, int>(), py::arg("numberofrows"), py::arg("numberofcolumns"), py::arg("initvalue"))
@@ -19,6 +20,7 @@ void init_indexmat(py::module &m)
 
         .def("print", &indexmat::print)
         .def("printsize", &indexmat::printsize)
+        
     ;
 }
 

@@ -67,6 +67,7 @@ add_library(pinelizard SHARED
     src/impliciteuler_wrapper.cpp
     src/universe_wrapper.cpp
     src/sl_wrapper.cpp
+    src/spline_wrapper.cpp
     src/wallclock_wrapper.cpp
     src/sparselizard_wrapper.cpp
 )

@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_parameter(py::module &m)
 {
-    //py::class_<parameter, std::shared_ptr<parameter> >(m, "parameter")
     py::class_<parameter>(m, "parameter")
+    
         .def(py::init<>())
         .def(py::init<int, int>(), py::arg("numrows"), py::arg("numcols"))
 
@@ -57,6 +57,7 @@ void init_parameter(py::module &m)
         .def("__rsub__", [](parameter &a, expression &b) { return  b - a;}, py::is_operator())
         .def("__rmul__", [](parameter &a, expression &b) { return b*a;}, py::is_operator())
         .def("__rtruediv__", [](parameter &a, expression &b) { return b/a;}, py::is_operator())
+        
     ;
 }
 

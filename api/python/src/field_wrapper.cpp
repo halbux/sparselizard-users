@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_field(py::module &m)
 {
-    //py::class_<field, std::shared_ptr<field> >(m, "field")
     py::class_<field>(m, "field")
+    
         .def(py::init<>())
         .def(py::init<std::string>(), py::arg("fieldtypename"))
         .def(py::init<std::string, const std::vector<int>>(), py::arg("fieldtypename"), py::arg("harmonicnumbers"))
@@ -111,6 +111,7 @@ void init_field(py::module &m)
 
         .def("writeraw", &field::writeraw, py::arg("physreg"), py::arg("filename"), py::arg("isbinary")=false, py::arg("extradata")=std::vector<double>{})
         .def("loadraw", &field::loadraw, py::arg("filename"), py::arg("isbinary")=false)
+        
         ;
 }
 

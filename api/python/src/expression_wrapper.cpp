@@ -5,15 +5,17 @@ namespace py = pybind11;
 void init_expression(py::module &m)
 {
     py::class_<expression>(m, "expression")
+    
         .def(py::init<>())
         .def(py::init<field>(), py::arg("input"))
         .def(py::init<double>(), py::arg("input"))
         .def(py::init<parameter>(), py::arg("input"))
         .def(py::init<port>(), py::arg("input"))
-        .def(py::init<int,int,std::vector<expression>>(), py::arg("numrows"), py::arg("numcols"), py::arg("exprs"))
+        .def(py::init<int, int, std::vector<expression>>(), py::arg("numrows"), py::arg("numcols"), py::arg("exprs"))
         .def(py::init<const std::vector<std::vector<expression>>>(), py::arg("input"))
-        .def(py::init<expression,expression,expression>(), py::arg("condexpr"), py::arg("exprtrue"), py::arg("exprfalse"))
-        .def(py::init<std::vector<double>,std::vector<expression>,expression>(), py::arg("pos"), py::arg("exprs"), py::arg("tocompare"))
+        .def(py::init<expression, expression, expression>(), py::arg("condexpr"), py::arg("exprtrue"), py::arg("exprfalse"))
+        .def(py::init<spline, expression>(), py::arg("spl"), py::arg("arg"))
+        .def(py::init<std::vector<double>, std::vector<expression>, expression>(), py::arg("pos"), py::arg("exprs"), py::arg("tocompare"))
 
         .def("countrows", &expression::countrows)
         .def("countcolumns", &expression::countcolumns)
@@ -48,7 +50,6 @@ void init_expression(py::module &m)
 
         .def("isscalar", &expression::isscalar)
         .def("isharmonicone", &expression::isharmonicone)
-        .def("isvalueorientationdependent", &expression::isvalueorientationdependent, py::arg("disjregs"))
         .def("iszero", &expression::iszero)
 
         .def("atbarycenter", &expression::atbarycenter, py::arg("physreg"), py::arg("onefield"))
@@ -63,12 +64,6 @@ void init_expression(py::module &m)
         .def("evaluate", static_cast<std::vector<double> (expression::*)(std::vector<double>&, std::vector<double>&, std::vector<double>&)>(&expression::evaluate), py::arg("xcoords"), py::arg("ycoords"), py::arg("zcoords"))
 
         .def("resize", &expression::resize, py::arg("numrows"), py::arg("numcols"))
-
-        .def("spacederivative", &expression::spacederivative, py::arg("whichderivative"))
-        .def("kietaphiderivative", &expression::kietaphiderivative, py::arg("whichderivative"))
-        .def("timederivative", &expression::timederivative, py::arg("derivativeorder"))
-
-        .def("getinrefcoord", &expression::getinrefcoord)
 
         .def("transpose", &expression::transpose)
         .def("removerowandcol", &expression::removerowandcol, py::arg("rowtoremove"), py::arg("coltoremove"))
@@ -103,37 +98,7 @@ void init_expression(py::module &m)
 
         .def("expand", &expression::expand)
 
-        /*
-        .def(-py::self)
-
-        .def(py::self + py::self)
-        .def(py::self - py::self)
-        .def(py::self * py::self)
-        .def(py::self / py::self)
-
-        .def(double() + py::self)
-        .def(double() + py::self)
-        .def(double() + py::self)
-        .def(double() + py::self)
-
-        .def(parameter() + py::self)
-        .def(parameter() + py::self)
-        .def(parameter() + py::self)
-        .def(parameter() + py::self)
-
-        .def(field() + py::self)
-        .def(field() + py::self)
-        .def(field() + py::self)
-        .def(field() + py::self)
-
-        .def(port() + py::self)
-        .def(port() + py::self)
-        .def(port() + py::self)
-        .def(port() + py::self)
-        */
-
         // operator (expression,expression)
-
         .def("__neg__", static_cast<expression (expression::*)()>(&expression::operator-))
 
         .def("__add__", [](expression &a, expression &b) { return a + b;}, py::is_operator())
@@ -164,6 +129,7 @@ void init_expression(py::module &m)
         .def("__rsub__", [](expression &a, port &b) { return  expression(b) - a;}, py::is_operator())
         .def("__rmul__", [](expression &a, port &b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](expression &a, port &b) { return expression(b)/a;}, py::is_operator())
+        
     ;
 
     py::implicitly_convertible<double, expression>();

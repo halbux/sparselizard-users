@@ -101,3 +101,4 @@ for i in range(nts):
     print("@" + str(i) + str(maxcrit) + " (#dofs is " + str(convec.countdofs()))
 		
     adapt(1)
+    

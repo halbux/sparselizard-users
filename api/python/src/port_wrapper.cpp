@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_port(py::module &m)
 {
-    //py::class_<port, std::shared_ptr<port> >(m, "port")
     py::class_<port>(m, "port")
+    
         .def(py::init<>())
         .def(py::init<std::vector<int>>(), py::arg("harmonicnumbers"))
 
@@ -44,6 +44,7 @@ void init_port(py::module &m)
         .def("__rsub__", [](port &a, double b) { return  expression(b) - a;}, py::is_operator())
         .def("__rmul__", [](port &a, double b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](port &a, double b) { return expression(b)/a;}, py::is_operator())
+        
     ;
 }
 

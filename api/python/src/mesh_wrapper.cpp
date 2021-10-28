@@ -6,8 +6,8 @@ namespace py = pybind11;
 
 void init_mesh(py::module &m)
 {
-    //py::class_<mesh, std::shared_ptr<mesh> >(m, "mesh")
     py::class_<mesh>(m, "mesh")
+    
         .def(py::init<>())
         .def(py::init<std::string, int>(), py::arg("name"), py::arg("verbosity")=1)
         .def(py::init<std::string, int, int, int>(), py::arg("name"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers"), py::arg("verbosity")=1)
@@ -61,6 +61,7 @@ void init_mesh(py::module &m)
         .def("selectanynode", static_cast<void (mesh::*)(int)>(&mesh::selectanynode), py::arg("newphysreg"))
 
         .def("use", &mesh::use)
+        
     ;
 }
 

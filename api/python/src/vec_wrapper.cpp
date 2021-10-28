@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_vec(py::module &m)
 {
-    //py::class_<vec, std::shared_ptr<vec> >(m, "vec")
     py::class_<vec>(m, "vec")
+    
         .def(py::init<>())
         .def(py::init<formulation>(), py::arg("formul"))
 
@@ -33,6 +33,7 @@ void init_vec(py::module &m)
 
         .def("norm", &vec::norm, py::arg("type")="2")
         .def("sum", &vec::sum)
+        
     ;
 }
 

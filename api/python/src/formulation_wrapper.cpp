@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_formulation(py::module &m)
 {
-    //py::class_<formulation, std::shared_ptr<formulation> >(m, "formulation")
     py::class_<formulation>(m, "formulation")
+    
         .def(py::init<>())
 
         .def("__iadd__", static_cast<formulation& (formulation::*)(expression)>(&formulation::operator+=), py::arg("expression"))
@@ -42,6 +42,7 @@ void init_formulation(py::module &m)
 
         .def("allsolve", static_cast<std::vector<double> (formulation::*)(double, int, std::string, int)>(&formulation::allsolve), py::arg("relrestol"), py::arg("maxnumit"), py::arg("soltype")="lu", py::arg("verbosity")=1)
         .def("allsolve", static_cast<std::vector<double> (formulation::*)(std::vector<int>, std::vector<std::vector<int>>, std::vector<std::vector<int>>, double, int, std::string, int)>(&formulation::allsolve), py::arg("formulterms"), py::arg("physicalterms"), py::arg("artificialterms"), py::arg("relrestol"), py::arg("maxnumit"), py::arg("soltype")="lu", py::arg("verbosity")=1)
+        
     ;
 }
 

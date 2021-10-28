@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_mat(py::module &m)
 {
-    //py::class_<mat, std::shared_ptr<mat> >(m, "mat")
     py::class_<mat>(m, "mat")
+    
         .def(py::init<>())
         .def("isdefined", &mat::isdefined)
         
@@ -22,6 +22,7 @@ void init_mat(py::module &m)
         .def("eliminate", &mat::eliminate)
         .def("print", &mat::print)
         .def("copy", &mat::copy)
+        
     ;
 }
 

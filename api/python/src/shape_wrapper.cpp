@@ -4,8 +4,8 @@ namespace py = pybind11;
 
 void init_shape(py::module &m)
 {
-    //py::class_<parameter, std::shared_ptr<parameter> >(m, "parameter")
     py::class_<shape>(m, "shape")
+    
         .def(py::init<>())
 
         .def(py::init<std::string, int, std::vector<double>>(), py::arg("shapename"), py::arg("physreg"), py::arg("coords"))
@@ -41,6 +41,7 @@ void init_shape(py::module &m)
         .def("getsons", &shape::getsons)
 
         .def("getphysicalregion", &shape::getphysicalregion)
+        
     ;
 }
 

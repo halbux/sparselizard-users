@@ -5,6 +5,7 @@ namespace py = pybind11;
 void init_densemat(py::module &m)
 {
     py::class_<densemat>(m, "densemat")
+    
         .def(py::init<>())
         .def(py::init<int, int>(), py::arg("numberofrows"), py::arg("numberofcolumns"))
         .def(py::init<int, int, double>(), py::arg("numberofrows"), py::arg("numberofcolumns"), py::arg("initvalue"))
@@ -19,6 +20,7 @@ void init_densemat(py::module &m)
 
         .def("print", &densemat::print)
         .def("printsize", &densemat::printsize)
+        
     ;
 }
 

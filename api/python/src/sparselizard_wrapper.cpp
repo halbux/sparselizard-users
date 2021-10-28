@@ -23,6 +23,7 @@ void init_impliciteuler(py::module &);
 void init_universe(py::module &);
 void init_wallclock(py::module &);
 void init_sl(py::module &);
+void init_spline(py::module &);
 
 
 PYBIND11_MODULE(pinelizard, m) {
@@ -50,6 +51,7 @@ PYBIND11_MODULE(pinelizard, m) {
     init_genalpha(m);
     init_impliciteuler(m);
     init_sl(m);
+    init_spline(m);
     init_wallclock(m);
 }
 
