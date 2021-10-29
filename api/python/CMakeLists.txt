@@ -64,6 +64,7 @@ add_library(pinelizard SHARED
     src/port_wrapper.cpp
     src/shape_wrapper.cpp
     src/sl_wrapper.cpp
+    src/spanningtree_wrapper.cpp
     src/sparselizard_wrapper.cpp
     src/spline_wrapper.cpp
     src/universe_wrapper.cpp
