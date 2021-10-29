@@ -50,6 +50,7 @@ include_directories(
 
 add_library(pinelizard SHARED
     src/densemat_wrapper.cpp
+    src/eigenvalue_wrapper.cpp
     src/expression_wrapper.cpp
     src/field_wrapper.cpp
     src/formulation_wrapper.cpp

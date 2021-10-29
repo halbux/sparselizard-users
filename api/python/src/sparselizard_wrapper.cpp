@@ -6,6 +6,7 @@ using namespace pybind11::literals;
 namespace py = pybind11;
 
 void init_densemat(py::module &);
+void init_eigenvalue(py::module &);
 void init_expression(py::module &);
 void init_field(py::module &);
 void init_formulation(py::module &);
@@ -36,6 +37,7 @@ PYBIND11_MODULE(pinelizard, m) {
     m.def("getversionname", &sl::getversionname);
 
     init_densemat(m);
+    init_eigenvalue(m);
     init_expression(m);
     init_field(m);
     init_formulation(m);
