@@ -22,24 +22,23 @@ set (PETSC_ARCH "arch-linux-c-opt")
 
 include_directories(
     ${SPARSELIZARD_SRC}
-    ${SPARSELIZARD_SRC}/mesh
-    ${SPARSELIZARD_SRC}/shape
-    ${SPARSELIZARD_SRC}/field
     ${SPARSELIZARD_SRC}/expression
     ${SPARSELIZARD_SRC}/expression/operation
+    ${SPARSELIZARD_SRC}/field
     ${SPARSELIZARD_SRC}/formulation
     ${SPARSELIZARD_SRC}/gausspoint
     ${SPARSELIZARD_SRC}/geometry
+    ${SPARSELIZARD_SRC}/io
+    ${SPARSELIZARD_SRC}/io/gmsh
+    ${SPARSELIZARD_SRC}/io/nastran
+    ${SPARSELIZARD_SRC}/io/paraview
+    ${SPARSELIZARD_SRC}/mesh
     ${SPARSELIZARD_SRC}/resolution
     ${SPARSELIZARD_SRC}/shapefunction
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical/h1
     ${SPARSELIZARD_SRC}/shapefunction/hierarchical/hcurl
     ${SPARSELIZARD_SRC}/shapefunction/lagrange
-    ${SPARSELIZARD_SRC}/io
-    ${SPARSELIZARD_SRC}/io/gmsh
-    ${SPARSELIZARD_SRC}/io/nastran
-    ${SPARSELIZARD_SRC}/io/paraview
 )
 
 include_directories(${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/include)
@@ -51,25 +50,25 @@ include_directories(
 
 add_library(pinelizard SHARED
     src/densemat_wrapper.cpp
-    src/indexmat_wrapper.cpp
-    src/mesh_wrapper.cpp
-    src/shape_wrapper.cpp
     src/expression_wrapper.cpp
-    src/parameter_wrapper.cpp
-    src/parameterselectedregion_wrapper.cpp
     src/field_wrapper.cpp
-    src/port_wrapper.cpp
-    src/integration_wrapper.cpp
     src/formulation_wrapper.cpp
-    src/vec_wrapper.cpp
-    src/mat_wrapper.cpp
     src/genalpha_wrapper.cpp
     src/impliciteuler_wrapper.cpp
-    src/universe_wrapper.cpp
+    src/indexmat_wrapper.cpp
+    src/integration_wrapper.cpp
+    src/mat_wrapper.cpp
+    src/mesh_wrapper.cpp
+    src/parameterselectedregion_wrapper.cpp
+    src/parameter_wrapper.cpp
+    src/port_wrapper.cpp
+    src/shape_wrapper.cpp
     src/sl_wrapper.cpp
-    src/spline_wrapper.cpp
-    src/wallclock_wrapper.cpp
     src/sparselizard_wrapper.cpp
+    src/spline_wrapper.cpp
+    src/universe_wrapper.cpp
+    src/vec_wrapper.cpp
+    src/wallclock_wrapper.cpp
 )
 
 #find_library(SPARSELIZARD_LIBRARY NAMES libsparselizard.so ${SPARSELIZARD_DIR})
