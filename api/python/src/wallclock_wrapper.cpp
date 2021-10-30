@@ -7,6 +7,7 @@ void init_wallclock(py::module &m)
     py::class_<wallclock>(m, "wallclock")
     
         .def(py::init<>())
+
         .def("tic", &wallclock::tic)
         .def("toc", &wallclock::toc)
         .def("print", &wallclock::print, py::arg("toprint")="")
