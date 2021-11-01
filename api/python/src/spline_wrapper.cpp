@@ -10,7 +10,7 @@ void init_spline(py::module &m)
         .def(py::init<std::string, char>(), py::arg("filename"), py::arg("delimiter")='\n')
         .def(py::init<std::vector<double>, std::vector<double>>(), py::arg("xin"), py::arg("yin"))
 
-        .def("set", static_cast<void (spline::*)(std::vector<double>&, std::vector<double>&)>(&spline::set), py::arg("xin"), py::arg("yin"))
+        .def("set", &spline::set, py::arg("xin"), py::arg("yin"))
         
         .def("getderivative", &spline::getderivative)
         

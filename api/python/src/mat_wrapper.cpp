@@ -7,6 +7,7 @@ void init_mat(py::module &m)
     py::class_<mat>(m, "mat")
     
         .def(py::init<>())
+        
         .def("isdefined", &mat::isdefined)
         
         .def("countrows", &mat::countrows)

@@ -7,16 +7,12 @@ void init_shape(py::module &m)
     py::class_<shape>(m, "shape")
     
         .def(py::init<>())
-
         .def(py::init<std::string, int, std::vector<double>>(), py::arg("shapename"), py::arg("physreg"), py::arg("coords"))
-
         .def(py::init<std::string, int, std::vector<double>, int>(), py::arg("shapename"), py::arg("physreg"), py::arg("coords"), py::arg("nummeshpts"))
         .def(py::init<std::string, int, std::vector<double>, std::vector<int>>(), py::arg("shapename"), py::arg("physreg"), py::arg("coords"), py::arg("nummeshpts"))
-
         .def(py::init<std::string, int, std::vector<shape>, int>(), py::arg("shapename"), py::arg("physreg"), py::arg("subshapes"), py::arg("nummeshpts"))
         .def(py::init<std::string, int, std::vector<shape>, std::vector<int>>(), py::arg("shapename"), py::arg("physreg"), py::arg("subshapes"), py::arg("nummeshpts"))
         .def(py::init<std::string, int, std::vector<shape>>(), py::arg("shapename"), py::arg("physreg"), py::arg("subshapes"))
-
         .def(py::init<std::string, int, std::vector<double>, double, int>(), py::arg("shapename"), py::arg("physreg"), py::arg("centercoords"), py::arg("radius"), py::arg("nummeshpts"))
         .def(py::init<std::string, int, shape, double, int>(), py::arg("shapename"), py::arg("physreg"), py::arg("centerpoint"), py::arg("radius"), py::arg("nummeshpts"))
 
