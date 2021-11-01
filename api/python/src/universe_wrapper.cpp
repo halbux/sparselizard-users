@@ -11,16 +11,7 @@ void init_universe(py::module &m)
         .def_static("setmaxnumthreads", &universe::setmaxnumthreads, py::arg("mnt"))
 
         .def_readwrite_static("roundoffnoiselevel", &universe::roundoffnoiselevel)
-
-        .def_readwrite_static("isaxisymmetric", &universe::isaxisymmetric)
-
-        .def_readwrite_static("currenttimestep", &universe::currenttimestep)
-
-        .def_readwrite_static("fundamentalfrequency", &universe::fundamentalfrequency)
-        .def_static("getfundamentalfrequency", &universe::getfundamentalfrequency)
-
-        .def_readwrite_static("physregshift", &universe::physregshift);
         
-        ;
+    ;
 }
 

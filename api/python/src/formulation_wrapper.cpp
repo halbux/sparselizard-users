@@ -15,16 +15,12 @@ void init_formulation(py::module &m)
         .def("countdofs", &formulation::countdofs)
         .def("allcountdofs", &formulation::allcountdofs)
 
-        .def("isstiffnessmatrixdefined", &formulation::isstiffnessmatrixdefined)
-        .def("isdampingmatrixdefined", &formulation::isdampingmatrixdefined)
-        .def("ismassmatrixdefined", &formulation::ismassmatrixdefined)
-
         .def("generate", static_cast<void (formulation::*)()>(&formulation::generate))
         .def("generatestiffnessmatrix", &formulation::generatestiffnessmatrix)
         .def("generatedampingmatrix", &formulation::generatedampingmatrix)
         .def("generatemassmatrix", &formulation::generatemassmatrix)
+        .def("generaterhs", &formulation::generaterhs)
 
-        .def("generatein", &formulation::generatein, py::arg("rhskcm"), py::arg("contributionnumbers"))
         .def("generate", static_cast<void (formulation::*)(std::vector<int>)>(&formulation::generate), py::arg("contributionnumbers"))
         .def("generate", static_cast<void (formulation::*)(int)>(&formulation::generate), py::arg("contributionnumber"))
 
@@ -37,6 +33,8 @@ void init_formulation(py::module &m)
         .def("K", &formulation::K, py::arg("keepfragments")=false)
         .def("C", &formulation::C, py::arg("keepfragments")=false)
         .def("M", &formulation::M, py::arg("keepfragments")=false)
+        
+        .def("getmatrix", &formulation::getmatrix, py::arg("KCM"), py::arg("keepfragments")=false, py::arg("additionalconstraints")=std::vector<indexmat>{})
 
         .def("solve", &formulation::solve, py::arg("soltype")="lu", py::arg("diagscaling")=false, py::arg("blockstoconsider") = std::vector<int>{-1})
 

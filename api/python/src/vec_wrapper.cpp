@@ -29,10 +29,23 @@ void init_vec(py::module &m)
         .def("load", &vec::load, py::arg("filename"))
         .def("print", &vec::print)
 
-        .def("copy", &vec::copy)
-
         .def("norm", &vec::norm, py::arg("type")="2")
         .def("sum", &vec::sum)
+        
+        
+        .def("__pos__", static_cast<vec (vec::*)()>(&vec::operator+))
+        .def("__neg__", static_cast<vec (vec::*)()>(&vec::operator-))
+        
+        // operator (vec, double)
+        .def("__mul__", [](vec &a, double &b) { return a*b;}, py::is_operator())
+        .def("__truediv__", [](vec &a, double &b) { return a/b;}, py::is_operator())
+        
+        // operator (vec, vec)
+        .def("__add__", [](vec &a, vec &b) { return a+b;}, py::is_operator())
+        .def("__sub__", [](vec &a, vec &b) { return a-b;}, py::is_operator())
+        
+        // operator (double, vec)
+        .def("__rmul__", [](vec &a, double &b) { return b*a;}, py::is_operator())
         
     ;
 }

@@ -8,8 +8,6 @@ void init_mat(py::module &m)
     
         .def(py::init<>())
         
-        .def("isdefined", &mat::isdefined)
-        
         .def("countrows", &mat::countrows)
         .def("countcolumns", &mat::countcolumns)
 
@@ -17,12 +15,26 @@ void init_mat(py::module &m)
 
         .def("reusefactorization", &mat::reusefactorization)
 
-        .def("xbmerge", &mat::xbmerge)
-        .def("x0merge", &mat::x0merge)
-
-        .def("eliminate", &mat::eliminate)
         .def("print", &mat::print)
-        .def("copy", &mat::copy)
+        
+        
+        .def("__pos__", static_cast<mat (mat::*)()>(&mat::operator+))
+        .def("__neg__", static_cast<mat (mat::*)()>(&mat::operator-))
+        
+        // operator (mat, double)
+        .def("__mul__", [](mat &a, double &b) { return a*b;}, py::is_operator())
+        .def("__truediv__", [](mat &a, double &b) { return a/b;}, py::is_operator())
+        
+        // operator (mat, mat)
+        .def("__add__", [](mat &a, mat &b) { return a+b;}, py::is_operator())
+        .def("__sub__", [](mat &a, mat &b) { return a-b;}, py::is_operator())
+        .def("__mul__", [](mat &a, mat &b) { return a*b;}, py::is_operator())
+        
+        // operator (mat, vec)
+        .def("__mul__", [](mat &a, vec &b) { return a*b;}, py::is_operator())
+        
+        // operator (double, mat)
+        .def("__rmul__", [](mat &a, double &b) { return b*a;}, py::is_operator())
         
     ;
 }

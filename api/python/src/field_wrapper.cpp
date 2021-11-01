@@ -10,38 +10,6 @@ void init_field(py::module &m)
         .def(py::init<std::string>(), py::arg("fieldtypename"))
         .def(py::init<std::string, const std::vector<int>>(), py::arg("fieldtypename"), py::arg("harmonicnumbers"))
 
-        .def("__neg__", static_cast<expression (field::*)()>(&field::operator-))
-
-        // operator (field,field)
-        .def("__add__", [](field &a, field &b) { return expression(a) + b;}, py::is_operator())
-        .def("__sub__", [](field &a, field &b) { return expression(a) - b;}, py::is_operator())
-        .def("__mul__", [](field &a, field &b) { return expression(a) * b;}, py::is_operator())
-        .def("__truediv__", [](field &a, field &b) { return expression(a) / b;}, py::is_operator())
-
-        // operator (field,double)
-        .def("__add__", [](field &a, double b) { return expression(a) + b;}, py::is_operator())
-        .def("__sub__", [](field &a, double b) { return expression(a) - b;}, py::is_operator())
-        .def("__mul__", [](field &a, double b) { return expression(a) * b;}, py::is_operator())
-        .def("__truediv__", [](field &a, double b) { return expression(a) / b;}, py::is_operator())
-
-        // operator (field,parameter)
-        .def("__add__", [](field &a, parameter &b) { return expression(a) + b;}, py::is_operator())
-        .def("__sub__", [](field &a, parameter &b) { return expression(a) - b;}, py::is_operator())
-        .def("__mul__", [](field &a, parameter &b) { return expression(a) * b;}, py::is_operator())
-        .def("__truediv__", [](field &a, parameter &b) { return expression(a) / b;}, py::is_operator())
-
-        // operator (double,field)
-        .def("__radd__", [](field &a, double b) { return expression(b) + a;}, py::is_operator())
-        .def("__rsub__", [](field &a, double b) { return  expression(b) - a;}, py::is_operator())
-        .def("__rmul__", [](field &a, double b) { return expression(b)*a;}, py::is_operator())
-        .def("__rtruediv__", [](field &a, double b) { return expression(b)/a;}, py::is_operator())
-
-        // operator (parameter, field)
-        .def("__radd__", [](field &a, parameter &b) { return expression(b) + a;}, py::is_operator())
-        .def("__rsub__", [](field &a, parameter &b) { return  expression(b) - a;}, py::is_operator())
-        .def("__rmul__", [](field &a, parameter &b) { return expression(b)*a;}, py::is_operator())
-        .def("__rtruediv__", [](field &a, parameter &b) { return expression(b)/a;}, py::is_operator())
-
         .def("countcomponents", &field::countcomponents)
         .def("getharmonics", &field::getharmonics)
         .def("printharmonics", &field::printharmonics)
@@ -112,6 +80,40 @@ void init_field(py::module &m)
         .def("writeraw", &field::writeraw, py::arg("physreg"), py::arg("filename"), py::arg("isbinary")=false, py::arg("extradata")=std::vector<double>{})
         .def("loadraw", &field::loadraw, py::arg("filename"), py::arg("isbinary")=false)
         
-        ;
+        
+        .def("__pos__", static_cast<expression (field::*)()>(&field::operator+))
+        .def("__neg__", static_cast<expression (field::*)()>(&field::operator-))
+
+        // operator (field, field)
+        .def("__add__", [](field &a, field &b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](field &a, field &b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](field &a, field &b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](field &a, field &b) { return expression(a)/b;}, py::is_operator())
+
+        // operator (field, double)
+        .def("__add__", [](field &a, double b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](field &a, double b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](field &a, double b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](field &a, double b) { return expression(a)/b;}, py::is_operator())
+
+        // operator (field, parameter)
+        .def("__add__", [](field &a, parameter &b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](field &a, parameter &b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](field &a, parameter &b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](field &a, parameter &b) { return expression(a)/b;}, py::is_operator())
+
+        // operator (double, field)
+        .def("__radd__", [](field &a, double b) { return expression(b)+a;}, py::is_operator())
+        .def("__rsub__", [](field &a, double b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rmul__", [](field &a, double b) { return expression(b)*a;}, py::is_operator())
+        .def("__rtruediv__", [](field &a, double b) { return expression(b)/a;}, py::is_operator())
+
+        // operator (parameter, field)
+        .def("__radd__", [](field &a, parameter &b) { return expression(b)+a;}, py::is_operator())
+        .def("__rsub__", [](field &a, parameter &b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rmul__", [](field &a, parameter &b) { return expression(b)*a;}, py::is_operator())
+        .def("__rtruediv__", [](field &a, parameter &b) { return expression(b)/a;}, py::is_operator())
+        
+    ;
 }
 
