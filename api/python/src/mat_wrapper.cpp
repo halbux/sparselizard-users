@@ -7,8 +7,8 @@ void init_mat(py::module &m)
     py::class_<mat>(m, "mat")
     
         .def(py::init<>())
-        .def(py::init<int, indexmat, indexmat, densemat>(), py::arg("matsize"), py::arg("rowadresses"), py::arg("coladresses"), py::arg("vals"))
-        .def(py::init<formulation, indexmat, indexmat, densemat>(), py::arg("myformulation"), py::arg("rowadresses"), py::arg("coladresses"), py::arg("vals"))
+        .def(py::init<int, indexmat, indexmat, densemat>(), py::arg("matsize"), py::arg("rowaddresses"), py::arg("coladdresses"), py::arg("vals"))
+        .def(py::init<formulation, indexmat, indexmat, densemat>(), py::arg("myformulation"), py::arg("rowaddresses"), py::arg("coladdresses"), py::arg("vals"))
         
         .def("countrows", &mat::countrows)
         .def("countcolumns", &mat::countcolumns)
