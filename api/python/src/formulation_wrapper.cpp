@@ -24,8 +24,6 @@ void init_formulation(py::module &m)
         .def("generate", static_cast<void (formulation::*)(std::vector<int>)>(&formulation::generate), py::arg("contributionnumbers"))
         .def("generate", static_cast<void (formulation::*)(int)>(&formulation::generate), py::arg("contributionnumber"))
 
-        .def("getportrelations", &formulation::getportrelations)
-
         .def("b", &formulation::b, py::arg("keepvector")=false, py::arg("dirichletandportupdate")=true)
         .def("A", &formulation::A, py::arg("keepfragments")=false)
 
