@@ -7,6 +7,8 @@ void init_mat(py::module &m)
     py::class_<mat>(m, "mat")
     
         .def(py::init<>())
+        .def(py::init<int, indexmat, indexmat, densemat>(), py::arg("matsize"), py::arg("rowadresses"), py::arg("coladresses"), py::arg("vals"))
+        .def(py::init<formulation, indexmat, indexmat, densemat>(), py::arg("myformulation"), py::arg("rowadresses"), py::arg("coladresses"), py::arg("vals"))
         
         .def("countrows", &mat::countrows)
         .def("countcolumns", &mat::countcolumns)
@@ -14,8 +16,13 @@ void init_mat(py::module &m)
         .def("countnnz", &mat::countnnz)
 
         .def("reusefactorization", &mat::reusefactorization)
+        
+        .def("getainds", &mat::getainds)
+        .def("getdinds", &mat::getdinds)
 
         .def("print", &mat::print)
+        
+        .def("copy", &mat::copy)
         
         
         .def("__pos__", static_cast<mat (mat::*)()>(&mat::operator+))
@@ -26,9 +33,9 @@ void init_mat(py::module &m)
         .def("__truediv__", [](mat &a, double &b) { return a/b;}, py::is_operator())
         
         // operator (mat, mat)
+        .def("__mul__", [](mat &a, mat &b) { return a*b;}, py::is_operator())
         .def("__add__", [](mat &a, mat &b) { return a+b;}, py::is_operator())
         .def("__sub__", [](mat &a, mat &b) { return a-b;}, py::is_operator())
-        .def("__mul__", [](mat &a, mat &b) { return a*b;}, py::is_operator())
         
         // operator (mat, vec)
         .def("__mul__", [](mat &a, vec &b) { return a*b;}, py::is_operator())

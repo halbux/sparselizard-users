@@ -8,12 +8,18 @@ void init_vec(py::module &m)
     
         .def(py::init<>())
         .def(py::init<formulation>(), py::arg("formul"))
+        .def(py::init<int, indexmat, densemat>(), py::arg("vecsize"), py::arg("addresses"), py::arg("vals"))
 
         .def("size", &vec::size)
 
         .def("updateconstraints", &vec::updateconstraints)
 
+        .def("setvalues", &vec::setvalues, py::arg("addresses"), py::arg("valsmat"), py::arg("op")="set")
+        .def("setallvalues", &vec::setallvalues, py::arg("valsmat"), py::arg("op")="set")
         .def("setvalue", static_cast<void (vec::*)(int, double, std::string)>(&vec::setvalue), py::arg("address"), py::arg("value"), py::arg("op")="set")
+        
+        .def("getvalues", &vec::getvalues, py::arg("addresses"))
+        .def("getallvalues", &vec::getallvalues)
         .def("getvalue", static_cast<double (vec::*)(int)>(&vec::getvalue), py::arg("address"))
 
         .def("setvalue", static_cast<void (vec::*)(port, double, std::string)>(&vec::setvalue), py::arg("prt"), py::arg("value"), py::arg("op")="set")
@@ -22,15 +28,18 @@ void init_vec(py::module &m)
         .def("setdata", static_cast<void (vec::*)(int, field, std::string)>(&vec::setdata), py::arg("physreg"), py::arg("myfield"), py::arg("op")="set")
         .def("setdata", static_cast<void (vec::*)()>(&vec::setdata))
 
-        .def("automaticupdate", &vec::automaticupdate, py::arg("updateit"))
         .def("noautomaticupdate", &vec::noautomaticupdate)
 
         .def("write", &vec::write, py::arg("filename"))
         .def("load", &vec::load, py::arg("filename"))
         .def("print", &vec::print)
 
+        .def("copy", &vec::copy)
+
         .def("norm", &vec::norm, py::arg("type")="2")
         .def("sum", &vec::sum)
+        
+        .def("permute", &vec::permute, py::arg("rowpermute"), py::arg("invertit")=false)
         
         
         .def("__pos__", static_cast<vec (vec::*)()>(&vec::operator+))
