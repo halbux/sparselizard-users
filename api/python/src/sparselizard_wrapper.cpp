@@ -2,8 +2,6 @@
 
 namespace py = pybind11;
 
-using namespace pybind11::literals;
-
 void init_densemat(py::module &);
 void init_eigenvalue(py::module &);
 void init_expression(py::module &);
