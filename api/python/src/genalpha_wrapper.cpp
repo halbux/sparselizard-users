@@ -6,7 +6,7 @@ void init_genalpha(py::module &m)
 {
     py::class_<genalpha>(m, "genalpha")
     
-        .def(py::init<formulation, vec, vec, int, std::vector<bool>>(), py::arg("formul"), py::arg("initspeed"), py::arg("initacceleration"), py::arg("verbosity"), py::arg("isrhskcconstant") = std::vector<bool>{false, false, false, false})
+        .def(py::init<formulation, vec, vec, int, std::vector<bool>>(), py::arg("formul"), py::arg("dtxinit"), py::arg("dtdtxinit"), py::arg("verbosity"), py::arg("isrhskcconstant") = std::vector<bool>{false, false, false, false})
 
         .def("setverbosity", &genalpha::setverbosity, py::arg("verbosity"))
 
@@ -26,11 +26,11 @@ void init_genalpha(py::module &m)
 
         .def("setadaptivity", &genalpha::setadaptivity, py::arg("tol"), py::arg("mints"), py::arg("maxts"), py::arg("reffact")=0.5, py::arg("coarfact")=2.0, py::arg("coarthres")=0.5)
 
-        .def("presolve", &genalpha::presolve, py::arg("fomuls"))
-        .def("postsolve", &genalpha::postsolve, py::arg("fomuls"))
+        .def("presolve", &genalpha::presolve, py::arg("formuls"))
+        .def("postsolve", &genalpha::postsolve, py::arg("formuls"))
 
         .def("next", static_cast<void (genalpha::*)(double)>(&genalpha::next), py::arg("timestep"))
-        .def("next", static_cast<int (genalpha::*)(double, int)>(&genalpha::next), py::arg("fomuls"), py::arg("maxnumnlit"))
+        .def("next", static_cast<int (genalpha::*)(double, int)>(&genalpha::next), py::arg("timestep"), py::arg("maxnumnlit"))
         
     ;
 }
