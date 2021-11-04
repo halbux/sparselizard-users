@@ -14,11 +14,9 @@ void init_parameter(py::module &m)
         .def("countrows", &parameter::countrows)
         .def("countcolumns", &parameter::countcolumns)
 
+        .def("setvalue", &parameter::setvalue, py::arg("physreg"), py::arg("input"))
+        
         .def("atbarycenter", &parameter::atbarycenter, py::arg("physreg"), py::arg("onefield"))
-
-        .def("__or__", static_cast<parameterselectedregion (parameter::*)(int)>(&parameter::operator|))
-
-        .def("__setitem__", static_cast<void (parameter::*)(int, expression)>(&parameter::setvalue), py::arg("physreg"), py::arg("input"))
 
         .def("max", static_cast<std::vector<double> (parameter::*)(int, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("max", static_cast<std::vector<double> (parameter::*)(int, expression, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<bool>{})

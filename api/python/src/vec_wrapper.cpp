@@ -22,6 +22,8 @@ void init_vec(py::module &m)
         .def("getallvalues", &vec::getallvalues)
         .def("getvalue", static_cast<double (vec::*)(int)>(&vec::getvalue), py::arg("address"))
 
+        .def("__or__", static_cast<vectorfieldselect (vec::*)(field)>(&vec::operator|))
+        
         .def("setvalue", static_cast<void (vec::*)(port, double, std::string)>(&vec::setvalue), py::arg("prt"), py::arg("value"), py::arg("op")="set")
         .def("getvalue", static_cast<double (vec::*)(port)>(&vec::getvalue), py::arg("prt"))
 

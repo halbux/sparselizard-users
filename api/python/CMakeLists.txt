@@ -60,7 +60,6 @@ add_library(pinelizard SHARED
     src/integration_wrapper.cpp
     src/mat_wrapper.cpp
     src/mesh_wrapper.cpp
-    src/parameterselectedregion_wrapper.cpp
     src/parameter_wrapper.cpp
     src/port_wrapper.cpp
     src/shape_wrapper.cpp
@@ -70,6 +69,7 @@ add_library(pinelizard SHARED
     src/spline_wrapper.cpp
     src/universe_wrapper.cpp
     src/vec_wrapper.cpp
+    src/vectorfieldselect_wrapper.cpp
     src/wallclock_wrapper.cpp
 )
 

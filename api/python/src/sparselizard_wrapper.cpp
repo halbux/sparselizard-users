@@ -13,7 +13,6 @@ void init_indexmat(py::module &);
 void init_integration(py::module &);
 void init_mat(py::module &);
 void init_mesh(py::module &);
-void init_parameterselectedregion(py::module &);
 void init_parameter(py::module &);
 void init_port(py::module &);
 void init_shape(py::module &);
@@ -22,6 +21,7 @@ void init_spanningtree(py::module &);
 void init_spline(py::module &);
 void init_universe(py::module &);
 void init_vec(py::module &);
+void init_vectorfieldselect(py::module &);
 void init_wallclock(py::module &);
 
 
@@ -44,7 +44,6 @@ PYBIND11_MODULE(pinelizard, m)
     init_integration(m);
     init_mat(m);
     init_mesh(m);
-    init_parameterselectedregion(m);
     init_parameter(m);
     init_port(m);
     init_shape(m);
@@ -53,6 +52,7 @@ PYBIND11_MODULE(pinelizard, m)
     init_spline(m);
     init_universe(m);
     init_vec(m);
+    init_vectorfieldselect(m);
     init_wallclock(m);
 }
 

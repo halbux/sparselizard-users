@@ -9,6 +9,8 @@ void init_field(py::module &m)
         .def(py::init<>())
         .def(py::init<std::string>(), py::arg("fieldtypename"))
         .def(py::init<std::string, const std::vector<int>>(), py::arg("fieldtypename"), py::arg("harmonicnumbers"))
+        .def(py::init<std::string, spanningtree>(), py::arg("fieldtypename"), py::arg("spantree"))
+        .def(py::init<std::string, const std::vector<int>, spanningtree>(), py::arg("fieldtypename"), py::arg("harmonicnumbers"), py::arg("spantree"))
 
         .def("countcomponents", &field::countcomponents)
         .def("getharmonics", &field::getharmonics)
@@ -28,6 +30,9 @@ void init_field(py::module &m)
         .def("setvalue", static_cast<void (field::*)(int, int, expression, expression, int)>(&field::setvalue), py::arg("physreg"), py::arg("numfftharms"), py::arg("meshdeform"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setvalue", static_cast<void (field::*)(int)>(&field::setvalue), py::arg("physreg"))
 
+        .def("setnodalvalues", &field::setnodalvalues, py::arg("nodenumbers"), py::arg("values"))
+        .def("getnodalvalues", &field::getnodalvalues, py::arg("nodenumbers"))
+        
         .def("setconstraint", static_cast<void (field::*)(int, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setconstraint", static_cast<void (field::*)(int, expression, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("meshdeform"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setconstraint", static_cast<void (field::*)(int, int, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("numfftharms"), py::arg("input"), py::arg("extraintegrationdegree")=0)
@@ -38,7 +43,8 @@ void init_field(py::module &m)
         .def("setgauge", &field::setgauge, py::arg("physreg"))
 
         .def("setdata", static_cast<void (field::*)(int, vec, std::string)>(&field::setdata), py::arg("physreg"), py::arg("myvec"), py::arg("op")="set")
-
+        .def("setdata", static_cast<void (field::*)(int, vectorfieldselect, std::string)>(&field::setdata), py::arg("physreg"), py::arg("myvec"), py::arg("op")="set")
+        
         .def("setcohomologysources", &field::setcohomologysources, py::arg("cutphysregs"), py::arg("cutvalues"))
 
         .def("automaticupdate", &field::automaticupdate, py::arg("updateit"))
