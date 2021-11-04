@@ -10,7 +10,7 @@ void init_impliciteuler(py::module &m)
 
         .def("setverbosity", &impliciteuler::setverbosity, py::arg("verbosity"))
 
-        .def("settolerance", &impliciteuler::settolerance, py::arg("tol"))
+        .def("settolerance", &impliciteuler::settolerance, py::arg("nltol"))
 
         .def("setrelaxationfactor", &impliciteuler::setrelaxationfactor, py::arg("relaxfact"))
 
