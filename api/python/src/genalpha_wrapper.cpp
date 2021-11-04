@@ -6,7 +6,7 @@ void init_genalpha(py::module &m)
 {
     py::class_<genalpha>(m, "genalpha")
     
-        .def(py::init<formulation, vec, vec, int, std::vector<bool>>(), py::arg("formul"), py::arg("dtxinit"), py::arg("dtdtxinit"), py::arg("verbosity"), py::arg("isrhskcconstant") = std::vector<bool>{false, false, false, false})
+        .def(py::init<formulation, vec, vec, int, std::vector<bool>>(), py::arg("formul"), py::arg("dtxinit"), py::arg("dtdtxinit"), py::arg("verbosity")=3, py::arg("isrhskcconstant") = std::vector<bool>{false, false, false, false})
 
         .def("setverbosity", &genalpha::setverbosity, py::arg("verbosity"))
 
