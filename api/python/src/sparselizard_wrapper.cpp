@@ -25,7 +25,7 @@ void init_vectorfieldselect(py::module &);
 void init_wallclock(py::module &);
 
 
-PYBIND11_MODULE(pinelizard, m)
+PYBIND11_MODULE(spylizard, m)
 {
     m.doc() = "This is the python binding for the sparselizard c++ library";
     m.def("printversion", &sl::printversion);

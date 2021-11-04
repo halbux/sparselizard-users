@@ -1,4 +1,4 @@
-from pinelizard import *
+from spylizard import *
 
 dielectric = 1; air = 2; electrode = 3; ground = 4;
     

@@ -1,4 +1,4 @@
-from pinelizard import *
+from spylizard import *
 
 mymesh = mesh("natconv.msh")
 

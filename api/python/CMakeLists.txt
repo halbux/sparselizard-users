@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-project(pinelizard LANGUAGES CXX VERSION 1.0 DESCRIPTION "sparselizard python wrapper")
+project(spylizard LANGUAGES CXX VERSION 1.0 DESCRIPTION "sparselizard python wrapper")
 set(CMAKE_CXX_STANDARD 11)
 
 set(DEFAULT_BUILD_TYPE "Release")
@@ -48,7 +48,7 @@ include_directories(
     ${PYBIND11_DIR}
 )
 
-add_library(pinelizard SHARED
+add_library(spylizard SHARED
     src/densemat_wrapper.cpp
     src/eigenvalue_wrapper.cpp
     src/expression_wrapper.cpp
@@ -75,7 +75,7 @@ add_library(pinelizard SHARED
 
 #find_library(SPARSELIZARD_LIBRARY NAMES libsparselizard.so ${SPARSELIZARD_DIR})
 
-SET_TARGET_PROPERTIES(pinelizard PROPERTIES PREFIX "")
-target_link_libraries(pinelizard sparselizard petsc slepc)
-target_link_directories(pinelizard PUBLIC ../../../sparselizard/build ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
+SET_TARGET_PROPERTIES(spylizard PROPERTIES PREFIX "")
+target_link_libraries(spylizard sparselizard petsc slepc)
+target_link_directories(spylizard PUBLIC ../../../sparselizard/build ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
 
