@@ -19,8 +19,8 @@ v.setconstraint(ground)
 # Electric permittivity
 epsilon = parameter()
 
-epsilon[air] = 8.854e-12
-epsilon[dielectric] = 3.9 * 8.854e-12
+epsilon.setvalue(air, 8.854e-12)
+epsilon.setvalue(dielectric, 3.9 * 8.854e-12)
 
 # Associate a V/Q (voltage/charge) port pair to field v on the electrode.
 # The electrode is supposed to be a perfect conductor with a constant v.
