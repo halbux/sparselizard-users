@@ -1,7 +1,5 @@
 #include "sparselizard_wrapper.h"
 
-using namespace pybind11::literals;
-
 namespace py = pybind11;
 
 void init_mesh(py::module &m)
