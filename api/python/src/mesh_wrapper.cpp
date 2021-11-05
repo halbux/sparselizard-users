@@ -14,10 +14,10 @@ void init_mesh(py::module &m)
         .def(py::init<std::vector<shape>, int, int, int>(), py::arg("inputshapes"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers"), py::arg("verbosity")=1)
 
         .def("load", static_cast<void (mesh::*)(std::string, int)>(&mesh::load), py::arg("name"), py::arg("verbosity")=1)
-        .def("load", static_cast<void (mesh::*)(std::string, int,int,int)>(&mesh::load), py::arg("name"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers")=1, py::arg("verbosity")=1)
+        .def("load", static_cast<void (mesh::*)(std::string, int, int, int)>(&mesh::load), py::arg("name"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers")=1, py::arg("verbosity")=1)
         .def("load", static_cast<void (mesh::*)(bool, std::vector<std::string>, int)>(&mesh::load), py::arg("mergeduplicates"), py::arg("meshfiles")=1, py::arg("verbosity")=1)
         .def("load", static_cast<void (mesh::*)(std::vector<shape>, int)>(&mesh::load), py::arg("inputshapes"), py::arg("verbosity")=1)
-        .def("load", static_cast<void (mesh::*)(std::vector<shape>, int,int,int)>(&mesh::load), py::arg("inputshapes"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers")=1, py::arg("verbosity")=1)
+        .def("load", static_cast<void (mesh::*)(std::vector<shape>, int, int, int)>(&mesh::load), py::arg("inputshapes"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers")=1, py::arg("verbosity")=1)
 
         .def("write", &mesh::write, py::arg("name"), py::arg("verbosity")=1)
 
