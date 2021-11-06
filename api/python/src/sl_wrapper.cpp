@@ -28,30 +28,29 @@ void init_sl(py::module &m)
     m.def("norm", &sl::norm);
 
     m.def("normal", static_cast<expression (*)()>(&sl::normal));
-    m.def("normal", static_cast<expression (*)(int)>(&sl::normal), py::arg("physreg"));
-    m.def("getnormal", static_cast<expression (*)(int)>(&sl::getnormal), py::arg("input"));
-    m.def("tangent", static_cast<expression (*)()>(&sl::tangent));
+    m.def("normal", static_cast<expression (*)(int)>(&sl::normal), py::arg("pointoutofphysreg"));
+    
+    m.def("tangent", &sl::tangent);
 
     m.def("scatterwrite", &sl::scatterwrite, py::arg("filename"), py::arg("xcoords"), py::arg("ycoords"), py::arg("zcoords"), py::arg("compxevals"), py::arg("compyevals")=std::vector<double>{}, py::arg("compzevals")=std::vector<double>{});
 
     m.def("setaxisymmetry", &sl::setaxisymmetry);
 
     m.def("setfundamentalfrequency", &sl::setfundamentalfrequency, py::arg("f"));
+    
     m.def("settime", &sl::settime, py::arg("t"));
     m.def("gettime", &sl::gettime);
 
     m.def("meshsize", &sl::meshsize, py::arg("integrationorder"));
-
     m.def("fieldorder", &sl::fieldorder, py::arg("input"), py::arg("alpha")=-1.0, py::arg("absthres")=0.0);
+    
     m.def("getharmonic", &sl::getharmonic, py::arg("harmnum"), py::arg("input"), py::arg("numfftharms")=-1);
     m.def("makeharmonic", &sl::makeharmonic, py::arg("harms"), py::arg("exprs"));
     m.def("moveharmonic", &sl::moveharmonic, py::arg("origharms"), py::arg("destharms"), py::arg("input"), py::arg("numfftharms")=-1);
 
-    m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression*, expression, expression, int)>(&sl::gettotalforce));
     m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression, expression, int)>(&sl::gettotalforce), py::arg("physreg"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
     m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression, expression, expression, int)>(&sl::gettotalforce), py::arg("physreg"), py::arg("meshdeform"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
 
-    m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression*, expression, expression, int)>(&sl::printtotalforce));
     m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression, expression, int)>(&sl::printtotalforce), py::arg("physreg"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
     m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression, expression, expression, int)>(&sl::printtotalforce), py::arg("physreg"), py::arg("meshdeform"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
 
@@ -64,7 +63,7 @@ void init_sl(py::module &m)
     m.def("grouptimesteps", static_cast<void (*)(std::string, std::vector<std::string>, std::vector<double>)>(&sl::grouptimesteps), py::arg("filename"), py::arg("filestogroup"), py::arg("timevals"));
     m.def("grouptimesteps", static_cast<void (*)(std::string, std::string, int, std::vector<double>)>(&sl::grouptimesteps), py::arg("filename"), py::arg("fileprefix"), py::arg("firstint"), py::arg("timevals"));
 
-    m.def("loadshape", &sl::loadshape, py::arg("meshname"));
+    m.def("loadshape", &sl::loadshape, py::arg("meshfile"));
 
     m.def("settimederivative", static_cast<void (*)(vec)>(&sl::settimederivative), py::arg("dtx"));
     m.def("settimederivative", static_cast<void (*)(vec, vec)>(&sl::settimederivative), py::arg("dtx"), py::arg("dtdtx"));
@@ -87,8 +86,8 @@ void init_sl(py::module &m)
     m.def("abs", &sl::abs, py::arg("input"));
     m.def("sqrt", &sl::sqrt, py::arg("input"));
     m.def("log10", &sl::log10, py::arg("input"));
-    m.def("pow", &sl::pow, py::arg("base"), py::arg("exponent"));
     m.def("exp", &sl::exp, py::arg("input"));
+    m.def("pow", &sl::pow, py::arg("base"), py::arg("exponent"));
     m.def("mod", &sl::mod, py::arg("input"), py::arg("modval"));
 
     m.def("ifpositive", &sl::ifpositive, py::arg("condexpr"), py::arg("trueexpr"), py::arg("falseexpr"));
@@ -98,6 +97,7 @@ void init_sl(py::module &m)
     m.def("max", static_cast<expression (*)(expression, expression)>(&sl::max), py::arg("a"), py::arg("b"));
     m.def("max", static_cast<expression (*)(field, field)>(&sl::max), py::arg("a"), py::arg("b"));
     m.def("max", static_cast<expression (*)(parameter, parameter)>(&sl::max), py::arg("a"), py::arg("b"));
+    
     m.def("min", static_cast<expression (*)(expression, expression)>(&sl::min), py::arg("a"), py::arg("b"));
     m.def("min", static_cast<expression (*)(field, field)>(&sl::min), py::arg("a"), py::arg("b"));
     m.def("min", static_cast<expression (*)(parameter, parameter)>(&sl::min), py::arg("a"), py::arg("b"));
@@ -125,21 +125,20 @@ void init_sl(py::module &m)
     m.def("doubledotproduct", &sl::doubledotproduct, py::arg("a"), py::arg("b"));
     m.def("trace", &sl::trace, py::arg("a"));
 
-    m.def("rotation", &sl::rotation, py::arg("alphax"), py::arg("alphay"), py::arg("alphaz"), py::arg("type")="");
-
     m.def("integral", static_cast<integration (*)(int, expression, int, int)>(&sl::integral), py::arg("physreg"), py::arg("tointegrate"), py::arg("integrationorderdelta")=0, py::arg("blocknumber")=0);
     m.def("integral", static_cast<integration (*)(int, expression, expression, int, int)>(&sl::integral), py::arg("physreg"), py::arg("meshdeform"), py::arg("tointegrate"), py::arg("integrationorderdelta")=0, py::arg("blocknumber")=0);
     m.def("integral", static_cast<integration (*)(int, int, expression, int, int)>(&sl::integral), py::arg("physreg"), py::arg("numcoefharms"), py::arg("tointegrate"), py::arg("integrationorderdelta")=0, py::arg("blocknumber")=0);
     m.def("integral", static_cast<integration (*)(int, int, expression, expression, int, int)>(&sl::integral), py::arg("physreg"), py::arg("numcoefharms"), py::arg("meshdeform"), py::arg("tointegrate"), py::arg("integrationorderdelta")=0, py::arg("blocknumber")=0);
 
-    m.def("dof", [](expression &input) { return sl::dof(input);}, py::arg("input"));
-    m.def("dof", [](expression &input, int physreg) { return sl::dof(input, physreg);}, py::arg("input"), py::arg("physreg"));
+    m.def("dof", static_cast<expression (*)(expression)>(&sl::dof), py::arg("input"));
+    m.def("dof", static_cast<expression (*)(expression, int)>(&sl::dof), py::arg("input"), py::arg("physreg"));
 
-    m.def("tf", [](expression &input) { return sl::tf(input);}, py::arg("input"));
-    m.def("tf", [](expression &input, int physreg) { return sl::tf(input, physreg);}, py::arg("input"), py::arg("physreg"));
+    m.def("tf", static_cast<expression (*)(expression)>(&sl::tf), py::arg("input"));
+    m.def("tf", static_cast<expression (*)(expression, int)>(&sl::tf), py::arg("input"), py::arg("physreg"));
 
     m.def("adapt", &sl::adapt, py::arg("verbosity")=0);
     m.def("alladapt", &sl::alladapt, py::arg("verbosity")=0);
+    
     m.def("zienkiewiczzhu", &sl::zienkiewiczzhu, py::arg("input"));
 
     m.def("array1x1", &sl::array1x1);
@@ -167,18 +166,13 @@ void init_sl(py::module &m)
     m.def("greenlagrangestrain", &sl::greenlagrangestrain, py::arg("input"));
     m.def("vonmises", &sl::vonmises, py::arg("stres"));
 
-    m.def("predefinedmassconservation", &sl::predefinedmassconservation, py::arg("dofv"), py::arg("tfp"), py::arg("rho"), py::arg("dtrho"), py::arg("gradrho"), py::arg("includetimederivs"), py::arg("isdensityconstant"));
-    m.def("predefinedinertialforce", &sl::predefinedinertialforce, py::arg("dofv"), py::arg("tfv"), py::arg("v"), py::arg("rho"));
-    m.def("predefinedviscousforce", &sl::predefinedviscousforce, py::arg("dofv"), py::arg("tfv"), py::arg("mu"), py::arg("isdensityconstant"), py::arg("isviscosityconstant"));
-
     m.def("continuitycondition", static_cast<std::vector<integration> (*)(int, int, field, field, int, bool)>(&sl::continuitycondition), py::arg("gamma1"), py::arg("gamma2"), py::arg("u1"), py::arg("u2"), py::arg("lagmultorder"), py::arg("errorifnotfound")=true);
     m.def("continuitycondition", static_cast<std::vector<integration> (*)(int, int, field, field, std::vector<double>, double, double, double, int)>(&sl::continuitycondition), py::arg("gamma1"), py::arg("gamma2"), py::arg("u1"), py::arg("u2"), py::arg("rotcent"), py::arg("rotangz"), py::arg("angzmod"), py::arg("factor"), py::arg("lagmultorder"));
 
-    m.def("periodicitycondition", static_cast<std::vector<integration> (*)(int, int, field, std::vector<double>, std::vector<double>, double, int)>(&sl::periodicitycondition), py::arg("gamma1"), py::arg("gamma2"), py::arg("u"), py::arg("dat1"), py::arg("dat2"), py::arg("factor"), py::arg("lagmultorder"));
+    m.def("periodicitycondition", &sl::periodicitycondition, py::arg("gamma1"), py::arg("gamma2"), py::arg("u"), py::arg("dat1"), py::arg("dat2"), py::arg("factor"), py::arg("lagmultorder"));
 
     m.def("predefinedelasticity", static_cast<expression (*)(expression, expression, expression, expression, std::string)>(&sl::predefinedelasticity), py::arg("dofu"), py::arg("tfu"), py::arg("Eyoung"), py::arg("nupoisson"), py::arg("myoption")="");
     m.def("predefinedelasticity", static_cast<expression (*)(expression, expression, expression, std::string)>(&sl::predefinedelasticity), py::arg("dofu"), py::arg("tfu"), py::arg("elasticitymatrix"), py::arg("myoption")="");
-
     m.def("predefinedelasticity", static_cast<expression (*)(expression, expression, field, expression, expression, expression, std::string)>(&sl::predefinedelasticity), py::arg("dofu"), py::arg("tfu"), py::arg("u"), py::arg("Eyoung"), py::arg("nupoisson"), py::arg("prestress"), py::arg("myoption")="");
     m.def("predefinedelasticity", static_cast<expression (*)(expression, expression, field, expression, expression, std::string)>(&sl::predefinedelasticity), py::arg("dofu"), py::arg("tfu"), py::arg("u"), py::arg("elasticitymatrix"), py::arg("prestress"), py::arg("myoption")="");
 
