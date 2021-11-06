@@ -27,7 +27,7 @@ void init_expression(py::module &m)
         .def("reordercolumns", &expression::reordercolumns, py::arg("neworder"))
 
         .def("max", static_cast<std::vector<double> (expression::*)(int, int, std::vector<double>)>(&expression::max), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
-        .def("max", static_cast<std::vector<double> (expression::*)(int, expression, int, std::vector<double>)>(&expression::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<bool>{})
+        .def("max", static_cast<std::vector<double> (expression::*)(int, expression, int, std::vector<double>)>(&expression::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (expression::*)(int, int, std::vector<double>)>(&expression::min), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (expression::*)(int, expression, int, std::vector<double>)>(&expression::min), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
 
@@ -49,7 +49,6 @@ void init_expression(py::module &m)
         .def("reuseit", &expression::reuseit, py::arg("istobereused")=true)
 
         .def("isscalar", &expression::isscalar)
-        .def("isharmonicone", &expression::isharmonicone)
         .def("iszero", &expression::iszero)
 
         .def("atbarycenter", &expression::atbarycenter, py::arg("physreg"), py::arg("onefield"))
