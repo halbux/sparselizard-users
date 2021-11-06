@@ -165,7 +165,7 @@ void init_sl(py::module &m)
 
     m.def("strain", &sl::strain, py::arg("input"));
     m.def("greenlagrangestrain", &sl::greenlagrangestrain, py::arg("input"));
-    m.def("vonmises", &sl::vonmises, py::arg("stres"));
+    m.def("vonmises", &sl::vonmises, py::arg("stress"));
 
     m.def("continuitycondition", static_cast<std::vector<integration> (*)(int, int, field, field, int, bool)>(&sl::continuitycondition), py::arg("gamma1"), py::arg("gamma2"), py::arg("u1"), py::arg("u2"), py::arg("lagmultorder"), py::arg("errorifnotfound")=true);
     m.def("continuitycondition", static_cast<std::vector<integration> (*)(int, int, field, field, std::vector<double>, double, double, double, int)>(&sl::continuitycondition), py::arg("gamma1"), py::arg("gamma2"), py::arg("u1"), py::arg("u2"), py::arg("rotcent"), py::arg("rotangz"), py::arg("angzmod"), py::arg("factor"), py::arg("lagmultorder"));
