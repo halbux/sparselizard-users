@@ -16,7 +16,7 @@ v.setorder(all, 3)
 # Ground:
 v.setconstraint(ground)
 
-# Electric permittivity
+# Electric permittivity:
 epsilon = parameter()
 
 epsilon.setvalue(air, 8.854e-12)
