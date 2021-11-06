@@ -66,7 +66,7 @@ void init_field(py::module &m)
         .def("atbarycenter", &field::atbarycenter, py::arg("physreg"), py::arg("onefield"))
 
         .def("max", static_cast<std::vector<double> (field::*)(int, int, std::vector<double>)>(&field::max), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
-        .def("max", static_cast<std::vector<double> (field::*)(int, expression, int, std::vector<double>)>(&field::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<bool>{})
+        .def("max", static_cast<std::vector<double> (field::*)(int, expression, int, std::vector<double>)>(&field::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (field::*)(int, int, std::vector<double>)>(&field::min), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (field::*)(int, expression, int, std::vector<double>)>(&field::min), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
 
