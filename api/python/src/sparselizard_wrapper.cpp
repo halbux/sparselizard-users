@@ -17,6 +17,7 @@ void init_parameter(py::module &);
 void init_port(py::module &);
 void init_shape(py::module &);
 void init_sl(py::module &);
+void init_slmpi(py::module &);
 void init_spanningtree(py::module &);
 void init_spline(py::module &);
 void init_universe(py::module &);
@@ -48,6 +49,7 @@ PYBIND11_MODULE(spylizard, m)
     init_port(m);
     init_shape(m);
     init_sl(m);
+    init_slmpi(m);
     init_spanningtree(m);
     init_spline(m);
     init_universe(m);

@@ -64,6 +64,7 @@ add_library(spylizard SHARED
     src/port_wrapper.cpp
     src/shape_wrapper.cpp
     src/sl_wrapper.cpp
+    src/slmpi_wrapper.cpp
     src/spanningtree_wrapper.cpp
     src/sparselizard_wrapper.cpp
     src/spline_wrapper.cpp
