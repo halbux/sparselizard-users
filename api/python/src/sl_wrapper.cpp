@@ -187,7 +187,7 @@ void init_sl(py::module &m)
     m.def("predefinedstokes", &sl::predefinedstokes, py::arg("dofv"), py::arg("tfv"), py::arg("dofp"), py::arg("tfp"), py::arg("mu"), py::arg("rho"), py::arg("dtrho"), py::arg("gradrho"), py::arg("includetimederivs")=false, py::arg("isdensityconstant")=true, py::arg("isviscosityconstant")=true);
     m.def("predefinednavierstokes", &sl::predefinednavierstokes, py::arg("dofv"), py::arg("tfv"), py::arg("v"), py::arg("dofp"), py::arg("tfp"), py::arg("mu"), py::arg("rho"), py::arg("dtrho"), py::arg("gradrho"), py::arg("includetimederivs")=false, py::arg("isdensityconstant")=true, py::arg("isviscosityconstant")=true);
 
-    m.def("predefinedadvectiondiffusion", &sl::predefinedadvectiondiffusion);
+    m.def("predefinedadvectiondiffusion", &sl::predefinedadvectiondiffusion, py::arg("doff"), py::arg("tff"), py::arg("v"), py::arg("alpha"), py::arg("beta"), py::arg("gamma"), py::arg("isdivvzero")=true);
     m.def("predefineddiffusion", &sl::predefineddiffusion, py::arg("doff"), py::arg("tff"), py::arg("alpha"), py::arg("beta"));
 
     m.def("predefinedstabilization", &sl::predefinedstabilization, py::arg("stabtype"), py::arg("delta"), py::arg("f"), py::arg("v"), py::arg("diffusivity"), py::arg("residual"));
