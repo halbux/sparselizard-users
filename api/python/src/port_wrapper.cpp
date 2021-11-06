@@ -18,7 +18,7 @@ void init_port(py::module &m)
         .def("getharmonics", &port::getharmonics)
         
         .def("harmonic", static_cast<port (port::*)(int)>(&port::harmonic), py::arg("harmonicnumber"))
-        .def("harmonic", static_cast<port (port::*)(std::vector<int>)>(&port::harmonic), py::arg("harmonicnumber"))
+        .def("harmonic", static_cast<port (port::*)(std::vector<int>)>(&port::harmonic), py::arg("harmonicnumbers"))
 
         .def("sin", &port::sin, py::arg("freqindex"))
         .def("cos", &port::cos, py::arg("freqindex"))
