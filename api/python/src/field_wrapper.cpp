@@ -110,13 +110,13 @@ void init_field(py::module &m)
 
         // operator (double, field)
         .def("__radd__", [](field &a, double b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](field &a, double b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](field &a, double b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](field &a, double b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](field &a, double b) { return expression(b)/a;}, py::is_operator())
 
         // operator (parameter, field)
         .def("__radd__", [](field &a, parameter &b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](field &a, parameter &b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](field &a, parameter &b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](field &a, parameter &b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](field &a, parameter &b) { return expression(b)/a;}, py::is_operator())
         
