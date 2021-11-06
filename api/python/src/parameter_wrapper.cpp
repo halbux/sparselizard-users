@@ -19,7 +19,7 @@ void init_parameter(py::module &m)
         .def("atbarycenter", &parameter::atbarycenter, py::arg("physreg"), py::arg("onefield"))
 
         .def("max", static_cast<std::vector<double> (parameter::*)(int, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
-        .def("max", static_cast<std::vector<double> (parameter::*)(int, expression, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<bool>{})
+        .def("max", static_cast<std::vector<double> (parameter::*)(int, expression, int, std::vector<double>)>(&parameter::max), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (parameter::*)(int, int, std::vector<double>)>(&parameter::min), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (parameter::*)(int, expression, int, std::vector<double>)>(&parameter::min), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
 
