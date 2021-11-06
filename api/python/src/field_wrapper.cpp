@@ -58,7 +58,7 @@ void init_field(py::module &m)
         .def("compz", &field::compz)
 
         .def("harmonic", static_cast<field (field::*)(int)>(&field::harmonic), py::arg("harmonicnumber"))
-        .def("harmonic", static_cast<field (field::*)(const std::vector<int>)>(&field::harmonic), py::arg("harmonicnumber"))
+        .def("harmonic", static_cast<field (field::*)(const std::vector<int>)>(&field::harmonic), py::arg("harmonicnumbers"))
 
         .def("sin", &field::sin, py::arg("freqindex"))
         .def("cos", &field::cos, py::arg("freqindex"))
