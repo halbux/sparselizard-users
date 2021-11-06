@@ -37,13 +37,13 @@ void init_port(py::module &m)
 
         // operator (port, double)
         .def("__add__", [](port &a, double b) { return expression(a)+b;}, py::is_operator())
-        .def("__sub__", [](port &a, double b) { return  expression(a)-b;}, py::is_operator())
+        .def("__sub__", [](port &a, double b) { return expression(a)-b;}, py::is_operator())
         .def("__mul__", [](port &a, double b) { return expression(a)*b;}, py::is_operator())
         .def("__truediv__", [](port &a, double b) { return expression(a)/b;}, py::is_operator())
 
         // operator (double, port)
         .def("__radd__", [](port &a, double b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](port &a, double b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](port &a, double b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](port &a, double b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](port &a, double b) { return expression(b)/a;}, py::is_operator())
         
