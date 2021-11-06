@@ -46,17 +46,17 @@ void init_parameter(py::module &m)
         .def("__mul__", [](parameter &a, parameter &b) { return expression(a)*b;}, py::is_operator())
         .def("__truediv__", [](parameter &a, parameter &b) { return expression(a)/b;}, py::is_operator())
 
+        // operator (parameter, double)
+        .def("__add__", [](parameter &a, double b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](parameter &a, double b) { return  expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](parameter &a, double b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](parameter &a, double b) { return expression(a)/b;}, py::is_operator())
+        
         // operator (double, parameter)
         .def("__radd__", [](parameter &a, double b) { return expression(b)+a;}, py::is_operator())
         .def("__rsub__", [](parameter &a, double b) { return  expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](parameter &a, double b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](parameter &a, double b) { return expression(b)/a;}, py::is_operator())
-
-        // operator (expression, parameter)
-        .def("__radd__", [](parameter &a, expression &b) { return b+a;}, py::is_operator())
-        .def("__rsub__", [](parameter &a, expression &b) { return b-a;}, py::is_operator())
-        .def("__rmul__", [](parameter &a, expression &b) { return b*a;}, py::is_operator())
-        .def("__rtruediv__", [](parameter &a, expression &b) { return b/a;}, py::is_operator())
         
     ;
 }
