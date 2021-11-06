@@ -49,11 +49,11 @@ void init_sl(py::module &m)
     m.def("makeharmonic", &sl::makeharmonic, py::arg("harms"), py::arg("exprs"));
     m.def("moveharmonic", &sl::moveharmonic, py::arg("origharms"), py::arg("destharms"), py::arg("input"), py::arg("numfftharms")=-1);
 
-    m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression, expression, int)>(&sl::gettotalforce), py::arg("physreg"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
-    m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression, expression, expression, int)>(&sl::gettotalforce), py::arg("physreg"), py::arg("meshdeform"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
+    m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression, expression, int)>(&sl::gettotalforce), py::arg("physreg"), py::arg("EorH"), py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
+    m.def("gettotalforce", static_cast<std::vector<double> (*)(int, expression, expression, expression, int)>(&sl::gettotalforce), py::arg("physreg"), py::arg("meshdeform"), py::arg("EorH"), py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
 
-    m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression, expression, int)>(&sl::printtotalforce), py::arg("physreg"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
-    m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression, expression, expression, int)>(&sl::printtotalforce), py::arg("physreg"), py::arg("meshdeform"), py::arg("EorH")=0, py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
+    m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression, expression, int)>(&sl::printtotalforce), py::arg("physreg"), py::arg("EorH"), py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
+    m.def("printtotalforce", static_cast<std::vector<double> (*)(int, expression, expression, expression, int)>(&sl::printtotalforce), py::arg("physreg"), py::arg("meshdeform"), py::arg("EorH"), py::arg("epsilonormu"), py::arg("extraintegrationorder")=0);
 
     m.def("setphysicalregionshift", &sl::setphysicalregionshift, py::arg("shiftamount"));
 
