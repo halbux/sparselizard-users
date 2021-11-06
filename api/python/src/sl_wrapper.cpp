@@ -182,7 +182,7 @@ void init_sl(py::module &m)
 
     m.def("predefinedacoustics", &sl::predefinedacoustics, py::arg("dofp"), py::arg("tfp"), py::arg("soundspeed"), py::arg("neperattenuation"));
     m.def("predefinedacousticradiation", &sl::predefinedacousticradiation, py::arg("dofp"), py::arg("tfp"), py::arg("soundspeed"), py::arg("neperattenuation"));
-    m.def("predefinedacousticstructureinteraction", &sl::predefinedacousticstructureinteraction, py::arg("dofp"), py::arg("tfp"), py::arg("dofu"), py::arg("tfu"), py::arg("soundspeed"), py::arg("fluiddensity"), py::arg("normal"), py::arg("neperattenuation"), py::arg("scaling") = 1.0);
+    m.def("predefinedacousticstructureinteraction", &sl::predefinedacousticstructureinteraction, py::arg("dofp"), py::arg("tfp"), py::arg("dofu"), py::arg("tfu"), py::arg("soundspeed"), py::arg("fluiddensity"), py::arg("normal"), py::arg("neperattenuation"), py::arg("scaling")=1.0);
 
     m.def("predefinedstokes", &sl::predefinedstokes, py::arg("dofv"), py::arg("tfv"), py::arg("dofp"), py::arg("tfp"), py::arg("mu"), py::arg("rho"), py::arg("dtrho"), py::arg("gradrho"), py::arg("includetimederivs")=false, py::arg("isdensityconstant")=true, py::arg("isviscosityconstant")=true);
     m.def("predefinednavierstokes", &sl::predefinednavierstokes, py::arg("dofv"), py::arg("tfv"), py::arg("v"), py::arg("dofp"), py::arg("tfp"), py::arg("mu"), py::arg("rho"), py::arg("dtrho"), py::arg("gradrho"), py::arg("includetimederivs")=false, py::arg("isdensityconstant")=true, py::arg("isviscosityconstant")=true);
