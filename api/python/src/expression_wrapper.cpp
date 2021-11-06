@@ -61,42 +61,8 @@ void init_expression(py::module &m)
         .def("at", &expression::at, py::arg("row"), py::arg("rowcol"))
 
         .def("evaluate", static_cast<double (expression::*)()>(&expression::evaluate))
-        .def("evaluate", static_cast<std::vector<double> (expression::*)(std::vector<double>&, std::vector<double>&, std::vector<double>&)>(&expression::evaluate), py::arg("xcoords"), py::arg("ycoords"), py::arg("zcoords"))
 
         .def("resize", &expression::resize, py::arg("numrows"), py::arg("numcols"))
-
-        .def("transpose", &expression::transpose)
-        .def("removerowandcol", &expression::removerowandcol, py::arg("rowtoremove"), py::arg("coltoremove"))
-        .def("determinant", &expression::determinant)
-        .def("cofactormatrix", &expression::cofactormatrix)
-        .def("invert", &expression::invert)
-
-        .def("pow", &expression::pow, py::arg("expression"))
-        .def("dof", &expression::dof, py::arg("physreg"))
-        .def("tf", &expression::tf, py::arg("physreg"))
-        .def("sin", &expression::sin)
-        .def("cos", &expression::cos)
-        .def("tan", &expression::tan)
-        .def("asin", &expression::asin)
-        .def("acos", &expression::acos)
-        .def("atan", &expression::atan)
-        .def("abs", &expression::abs)
-        .def("log10", &expression::log10)
-        .def("mod", &expression::mod, py::arg("modval"))
-
-        .def("on", &expression::on, py::arg("physreg"), py::arg("coordshift"), py::arg("errorifnotfound"))
-
-        .def("time", &expression::time)
-
-        .def("invjac", static_cast<expression (expression::*)(int, int)>(&expression::invjac), py::arg("row"), py::arg("col"))
-        .def("jac", static_cast<expression (expression::*)(int, int)>(&expression::jac), py::arg("row"), py::arg("col"))
-        .def("detjac", &expression::invert)
-        .def("invjac", static_cast<expression (expression::*)()>(&expression::invjac))
-        .def("jac", static_cast<expression (expression::*)()>(&expression::jac))
-
-        .def("getcopy", &expression::invert)
-
-        .def("expand", &expression::expand)
 
 
         .def("__pos__", static_cast<expression (expression::*)()>(&expression::operator+))
@@ -108,27 +74,51 @@ void init_expression(py::module &m)
         .def("__mul__", [](expression &a, expression &b) { return a*b;}, py::is_operator())
         .def("__truediv__", [](expression &a, expression &b) { return a/b;}, py::is_operator())
 
+        // operator (expression, field)
+        .def("__add__", [](expression &a, field &b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](expression &a, field &b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](expression &a, field &b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](expression &a, field &b) { return expression(a)/b;}, py::is_operator())
+
+        // operator (expression, double)
+        .def("__add__", [](expression &a, double b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](expression &a, double b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](expression &a, double b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](expression &a, double b) { return expression(a)/b;}, py::is_operator())
+
+        // operator (expression, parameter)
+        .def("__add__", [](expression &a, parameter &b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](expression &a, parameter &b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](expression &a, parameter &b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](expression &a, parameter &b) { return expression(a)/b;}, py::is_operator())
+
+        // operator (expression, port)
+        .def("__add__", [](expression &a, port &b) { return expression(a)+b;}, py::is_operator())
+        .def("__sub__", [](expression &a, port &b) { return expression(a)-b;}, py::is_operator())
+        .def("__mul__", [](expression &a, port &b) { return expression(a)*b;}, py::is_operator())
+        .def("__truediv__", [](expression &a, port &b) { return expression(a)/b;}, py::is_operator())
+        
         // operator (double, expression)
         .def("__radd__", [](expression &a, double b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](expression &a, double b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](expression &a, double b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](expression &a, double b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](expression &a, double b) { return expression(b)/a;}, py::is_operator())
 
         // operator (field, expression)
         .def("__radd__", [](expression &a, field &b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](expression &a, field &b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](expression &a, field &b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](expression &a, field &b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](expression &a, field &b) { return expression(b)/a;}, py::is_operator())
 
         // operator (parameter, expression)
         .def("__radd__", [](expression &a, parameter &b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](expression &a, parameter &b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](expression &a, parameter &b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](expression &a, parameter &b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](expression &a, parameter &b) { return expression(b)/a;}, py::is_operator())
 
         // operator (port, expression)
         .def("__radd__", [](expression &a, port &b) { return expression(b)+a;}, py::is_operator())
-        .def("__rsub__", [](expression &a, port &b) { return  expression(b)-a;}, py::is_operator())
+        .def("__rsub__", [](expression &a, port &b) { return expression(b)-a;}, py::is_operator())
         .def("__rmul__", [](expression &a, port &b) { return expression(b)*a;}, py::is_operator())
         .def("__rtruediv__", [](expression &a, port &b) { return expression(b)/a;}, py::is_operator())
         
