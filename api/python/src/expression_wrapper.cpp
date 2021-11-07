@@ -44,7 +44,7 @@ void init_expression(py::module &m)
         .def("write", static_cast<void (expression::*)(int, std::string, int, int)>(&expression::write), py::arg("physreg"), py::arg("filename"), py::arg("lagrangeorder"), py::arg("numtimesteps")=-1)
         .def("write", static_cast<void (expression::*)(int, expression, std::string, int, int)>(&expression::write), py::arg("physreg"), py::arg("meshdeform"), py::arg("filename"), py::arg("lagrangeorder"), py::arg("numtimesteps")=-1)
 
-        .def("streamline", static_cast<void (expression::*)(int, std::string, const std::vector<double>&, double, bool)>(&expression::streamline), py::arg("physreg"), py::arg("filename"), py::arg("startcoords"), py::arg("stepsize"), py::arg("downstreamonly")=false)
+        .def("streamline", &expression::streamline, py::arg("physreg"), py::arg("filename"), py::arg("startcoords"), py::arg("stepsize"), py::arg("downstreamonly")=false)
 
         .def("reuseit", &expression::reuseit, py::arg("istobereused")=true)
 
