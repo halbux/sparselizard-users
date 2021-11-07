@@ -24,7 +24,6 @@ out=$(python3.9 main.py);
 # Get the last 4 characters in the output:
 out="${out:$((${#out}-4)):4}"
 
-# If the last character is 1 the current example was run successfully:
 if [ $out == "True" ]
 then
 echo 'SUCCESS AT' $i;
