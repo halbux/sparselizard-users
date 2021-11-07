@@ -46,8 +46,8 @@ electrostatics.solve()
 # Compute the capacitance:
 C = Q.getvalue() / V.getvalue()
 
-print('Capacitance is ', C, ' F per unit depth')
-print('Electrode voltage is ', V.getvalue(), ' V')
+print('Capacitance is', C, 'F per unit depth')
+print('Electrode voltage is', V.getvalue(), 'V')
 
 # Write v and E for illustration:
 v.write(all, "v.pos", 2)
