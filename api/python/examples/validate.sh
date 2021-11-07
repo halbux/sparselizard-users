@@ -27,7 +27,6 @@ out="${out:$((${#out}-4)):4}"
 if [ $out == "True" ]
 then
 echo 'SUCCESS AT' $i;
-sleep 2;
 else
 echo 'FAILED AT' $i;
 echo '';
