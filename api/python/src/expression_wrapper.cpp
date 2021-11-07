@@ -57,7 +57,7 @@ void init_expression(py::module &m)
 
         .def("rotate", &expression::rotate, py::arg("ax"), py::arg("ay"), py::arg("az"), py::arg("leftop")="default", py::arg("rightop")="default")
 
-        .def("at", &expression::at, py::arg("row"), py::arg("rowcol"))
+        .def("at", &expression::at, py::arg("row"), py::arg("col"))
 
         .def("evaluate", static_cast<double (expression::*)()>(&expression::evaluate))
 
