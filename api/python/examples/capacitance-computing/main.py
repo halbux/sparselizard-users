@@ -46,13 +46,13 @@ electrostatics.solve()
 # Compute the capacitance:
 C = Q.getvalue() / V.getvalue()
 
-print(' Capacitance is ',  C , ' F per unit depth')
-print(' Electrode voltage is ' , V.getvalue() , ' V')
+print('Capacitance is ',  C , ' F per unit depth')
+print('Electrode voltage is ' , V.getvalue() , ' V')
 
 # Write v and E for illustration:
 v.write(all, "v.pos", 2)
 (-grad(v)).write(all, "E.pos", 2);
 
 # Code validation line. Can be removed.
-print( (C < 1.30635e-10) and (C > 1.30633e-10))
+print((C < 1.30635e-10) and (C > 1.30633e-10))
 
