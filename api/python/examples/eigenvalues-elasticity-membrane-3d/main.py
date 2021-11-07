@@ -50,7 +50,7 @@ myeigenvectors = eig.geteigenvectorrealpart()
 # Loop on all eigenvectors found:
 for i in range(0, len(myeigenvectors)):
 
-	# Transfer the data from the ith eigenvector to field u:
+    # Transfer the data from the ith eigenvector to field u:
     u.setdata(top, myeigenvectors[i])
     # Write the deflection on the top surface of the membrane with an order 3 interpolation:
     u.write(top, "u"+str(i)+".pos", 3)
