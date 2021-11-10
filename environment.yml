@@ -2,10 +2,4 @@ name: example-environment
 channels:
   - conda-forge
 dependencies:
-  - numpy
-  - psutil
-  - toolz
-  - matplotlib
-  - scipy
-  - pyvista
-  - ipyvtklink
+  - spylizard
