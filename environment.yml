@@ -3,5 +3,5 @@ channels:
   - conda-forge
 dependencies:
 - pip
-  - pip:
-    - spylizard
+- pip:
+  - spylizard
