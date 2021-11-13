@@ -37,7 +37,11 @@ void init_mesh(py::module &m)
         .def("scale", static_cast<void (mesh::*)(int, double, double, double)>(&mesh::scale), py::arg("physreg"), py::arg("x"), py::arg("y"), py::arg("z"))
         .def("scale", static_cast<void (mesh::*)(double, double, double)>(&mesh::scale), py::arg("x"), py::arg("y"), py::arg("z"))
 
-        .def("getmeshdimension", &mesh::getmeshdimension)
+        .def("getdimension", &mesh::getdimension)
+        
+        .def("getdimensions", &mesh::getdimensions)
+        .def("printdimensions", &mesh::printdimensions)
+
         .def("getphysicalregionnumbers", &mesh::getphysicalregionnumbers, py::arg("dim")=-1)
 
         .def("selectskin", static_cast<void (mesh::*)(int, int)>(&mesh::selectskin), py::arg("newphysreg"), py::arg("physregtoskin"))
