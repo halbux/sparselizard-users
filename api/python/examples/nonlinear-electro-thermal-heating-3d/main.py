@@ -101,7 +101,7 @@ electrokinetics += integral(volume, grad(tf(v))*1/rho*grad(dof(v)))
 heatequation = formulation()
 
 # Here the time derivative is zero (static simulation):
-# heatequation += integral(volume, r*cp*dt(dof(T))*tf(T));
+# heatequation += integral(volume, r*cp*dt(dof(T))*tf(T))
 heatequation += integral(volume, grad(tf(T))*k*grad(dof(T)))
 # Add the current heating source:
 heatequation += integral(volume, -j*E*tf(T))
