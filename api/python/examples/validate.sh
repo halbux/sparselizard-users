@@ -34,6 +34,7 @@ exit 1;
 fi
 
 # CLEAN:
+rm -f *.msh
 rm -f *.pos;
 rm -f *.vtk;
 rm -f *.vtu;
