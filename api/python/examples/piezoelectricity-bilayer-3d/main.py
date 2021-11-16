@@ -14,7 +14,7 @@ setfundamentalfrequency(1e4)
 # Use harmonic 2, i.e. u(x,t) = U(x)*sin(2pi*f0*t) for u and 
 # v(x,t) = V(x)*sin(2pi*f0*t) for v.
 #
-u = field("h1xyz", [2]); v = field("h1", [2])
+u = field("h1xyz", [2]); v = field("h1", [2]);
 
 # Use interpolation order 2 on 'wholedomain' for u and 1 for v in the PZT layer:
 u.setorder(wholedomain, 2)
