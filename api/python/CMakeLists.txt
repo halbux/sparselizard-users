@@ -11,7 +11,7 @@ set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}" CACHE STRING "Choose the type of bu
 set (CMAKE_CXX_COMPILER "g++")
 set (CMAKE_CXX_FLAGS "-fPIC")
 
-set (PYTHON_DIR "/usr/include/python3.9")
+set (PYTHON_DIR "/usr/include/python3.10")
 set (PYBIND11_DIR "/usr/include/pybind11")
 
 set (SPARSELIZARD_DIR "../../../sparselizard")
