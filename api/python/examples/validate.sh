@@ -2,7 +2,7 @@
 
 
 # Make the .so available to python:
-cp ../build/spylizard.so ~/.local/lib/python3.9/site-packages;
+cp ../build/spylizard.so ~/.local/lib/python3.10/site-packages;
 
 # LOOP ON ALL EXAMPLES:
 
@@ -19,7 +19,7 @@ fi
 cd $i;
 
 # Run the current example:
-out=$(python3.9 main.py);
+out=$(python3.10 main.py);
 
 # Get the last 4 characters in the output:
 out="${out:$((${#out}-4)):4}"
