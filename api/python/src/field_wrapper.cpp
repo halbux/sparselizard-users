@@ -35,6 +35,8 @@ void init_field(py::module &m)
         
         .def("setconstraint", static_cast<void (field::*)(int, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setconstraint", static_cast<void (field::*)(int, expression, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("meshdeform"), py::arg("input"), py::arg("extraintegrationdegree")=0)
+        .def("setconstraint", static_cast<void (field::*)(int, std::vector<expression>, int)>(&field::setconstraint), py::arg("physreg"), py::arg("input"), py::arg("extraintegrationdegree")=0)
+        .def("setconstraint", static_cast<void (field::*)(int, expression, std::vector<expression>, int)>(&field::setconstraint), py::arg("physreg"), py::arg("meshdeform"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setconstraint", static_cast<void (field::*)(int, int, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("numfftharms"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setconstraint", static_cast<void (field::*)(int, int, expression, expression, int)>(&field::setconstraint), py::arg("physreg"), py::arg("numfftharms"), py::arg("meshdeform"), py::arg("input"), py::arg("extraintegrationdegree")=0)
         .def("setconstraint", static_cast<void (field::*)(int)>(&field::setconstraint), py::arg("physreg"))
