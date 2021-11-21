@@ -5,6 +5,9 @@ namespace py = pybind11;
 void init_sl(py::module &m)
 {
     
+    m.def("setmaxnumthreads", &sl::setmaxnumthreads, py::arg("mnt"));
+    m.def("getmaxnumthreads", &sl::getmaxnumthreads);
+
     m.def("getpi", &sl::getpi);
     m.def("getrandom", &sl::getrandom);
 
