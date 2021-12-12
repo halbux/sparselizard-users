@@ -17,6 +17,8 @@ void init_shape(py::module &m)
         .def(py::init<std::string, int, shape, double, int>(), py::arg("shapename"), py::arg("physreg"), py::arg("centerpoint"), py::arg("radius"), py::arg("nummeshpts"))
 
         .def("setphysicalregion", &shape::setphysicalregion, py::arg("physreg"))
+        
+        .def("getcurvatureorder", &shape::getcurvatureorder)
 
         .def("move", &shape::move, py::arg("u"))
 
