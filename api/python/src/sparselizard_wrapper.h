@@ -4,5 +4,8 @@
 #include <pybind11/stl_bind.h>
 #include <pybind11/iostream.h>
 
-#include "sparselizard.h"
+PYBIND11_MAKE_OPAQUE(std::vector<double>);
+PYBIND11_MAKE_OPAQUE(std::vector<int8_t>);
 
+#include "sparselizard.h"
+    

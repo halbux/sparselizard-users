@@ -4,6 +4,10 @@ namespace py = pybind11;
 
 void init_expression(py::module &m)
 {
+    py::bind_vector<std::vector<double>>(m, "VectorDouble");
+    py::bind_vector<std::vector<int8_t>>(m, "VectorChar");
+    py::implicitly_convertible<pybind11::iterable, std::vector<double>>();
+    py::implicitly_convertible<pybind11::iterable, std::vector<int8_t>>();
     py::class_<expression>(m, "expression")
     
         .def(py::init<>())
@@ -31,7 +35,7 @@ void init_expression(py::module &m)
         .def("min", static_cast<std::vector<double> (expression::*)(int, int, std::vector<double>)>(&expression::min), py::arg("physreg"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
         .def("min", static_cast<std::vector<double> (expression::*)(int, expression, int, std::vector<double>)>(&expression::min), py::arg("physreg"), py::arg("meshdeform"), py::arg("refinement"), py::arg("xyzrange")=std::vector<double>{})
 
-        .def("interpolate", static_cast<void (expression::*)(int, std::vector<double>&, std::vector<double>&, std::vector<bool>&)>(&expression::interpolate), py::arg("physreg"), py::arg("xyzcoord"), py::arg("interpolated"), py::arg("isfound"))
+        .def("interpolate", static_cast<void (expression::*)(int, std::vector<double>&, std::vector<double>&, std::vector<int8_t>&)>(&expression::interpolate), py::arg("physreg"), py::arg("xyzcoord"), py::arg("interpolated"), py::arg("isfound"))
         .def("interpolate", static_cast<void (expression::*)(int, expression, std::vector<double>&, std::vector<double>&, std::vector<bool>&)>(&expression::interpolate), py::arg("physreg"), py::arg("meshdeform"), py::arg("xyzcoord"), py::arg("interpolated"), py::arg("isfound"))
         .def("interpolate", static_cast<std::vector<double> (expression::*)(int, const std::vector<double>)>(&expression::interpolate), py::arg("physreg"), py::arg("xyzcoord"))
         .def("interpolate", static_cast<std::vector<double> (expression::*)(int, expression, const std::vector<double>)>(&expression::interpolate), py::arg("physreg"), py::arg("meshdeform"), py::arg("xyzcoord"))
