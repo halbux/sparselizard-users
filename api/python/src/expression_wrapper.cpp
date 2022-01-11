@@ -48,7 +48,23 @@ void init_expression(py::module &m)
                     isfound.append(isFoundWrapped[index] == true ? true : false);   // weird std::vector<bool> needs this trick
                 }
             }, py::arg("physreg"), py::arg("xyzcoord"), py::arg("interpolated"), py::arg("isfound"))
-        .def("interpolate", static_cast<void (expression::*)(int, expression, std::vector<double>&, std::vector<double>&, std::vector<bool>&)>(&expression::interpolate), py::arg("physreg"), py::arg("meshdeform"), py::arg("xyzcoord"), py::arg("interpolated"), py::arg("isfound"))
+        .def("interpolate", [](expression &self, int physreg, expression meshdeform, py::list& xyzcoord, py::list& interpolated, py::list& isfound){
+                std::cout<<"running interpolate wrapper"<<std::endl;
+                const unsigned int numPoints = py::len(xyzcoord);
+                std::vector<double> interpolatedWrapped(numPoints);
+                std::vector<double> evalPointsWrapped(numPoints);
+                std::vector<bool> isFoundWrapped(numPoints);
+                evalPointsWrapped.clear();
+                for (auto& el : xyzcoord)
+                    evalPointsWrapped.push_back(el.cast<double>());
+                self.interpolate(physreg, meshdeform, evalPointsWrapped, interpolatedWrapped, isFoundWrapped);
+                if (evalPointsWrapped.size() != numPoints)
+                    std::cout<<"return size mismatch, expected "<<numPoints<<" got "<<evalPointsWrapped.size()<<" items!"<<std::endl;
+                for(size_t index = 0; index < numPoints; index++){
+                    interpolated.append(interpolatedWrapped[index]);
+                    isfound.append(isFoundWrapped[index] == true ? true : false);   // weird std::vector<bool> needs this trick
+                }
+            }, py::arg("physreg"), py::arg("meshdeform"), py::arg("xyzcoord"), py::arg("interpolated"), py::arg("isfound"))
         .def("interpolate", static_cast<std::vector<double> (expression::*)(int, const std::vector<double>)>(&expression::interpolate), py::arg("physreg"), py::arg("xyzcoord"))
         .def("interpolate", static_cast<std::vector<double> (expression::*)(int, expression, const std::vector<double>)>(&expression::interpolate), py::arg("physreg"), py::arg("meshdeform"), py::arg("xyzcoord"))
 
