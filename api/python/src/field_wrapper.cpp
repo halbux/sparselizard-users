@@ -17,6 +17,7 @@ void init_field(py::module &m)
         .def("printharmonics", &field::printharmonics)
         .def("setname", &field::setname, py::arg("name"))
         .def("print", &field::print)
+        .def("printvalues", &field::printvalues, py::arg("databoundsonly"))
 
         .def("setorder", static_cast<void (field::*)(int, int)>(&field::setorder), py::arg("physreg"), py::arg("interpolorder"))
         .def("setorder", static_cast<void (field::*)(expression, int, int)>(&field::setorder), py::arg("criterion"), py::arg("loworder"), py::arg("highorder"))
