@@ -26,6 +26,9 @@ void init_slmpi(py::module &m)
     
     m.def("max", static_cast<void (*)(std::vector<int>&)>(&slmpi::max), py::arg("data"));
     m.def("max", static_cast<void (*)(std::vector<double>&)>(&slmpi::max), py::arg("data"));
+    
+    m.def("min", static_cast<void (*)(std::vector<int>&)>(&slmpi::min), py::arg("data"));
+    m.def("min", static_cast<void (*)(std::vector<double>&)>(&slmpi::min), py::arg("data"));
 
     m.def("broadcast", static_cast<void (*)(int, std::vector<int>&)>(&slmpi::broadcast), py::arg("broadcaster"), py::arg("data"));
     m.def("broadcast", static_cast<void (*)(int, std::vector<double>&)>(&slmpi::broadcast), py::arg("broadcaster"), py::arg("data"));
