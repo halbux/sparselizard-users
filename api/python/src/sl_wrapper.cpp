@@ -183,7 +183,7 @@ void init_sl(py::module &m)
     m.def("predefinedelectrostaticforce", &sl::predefinedelectrostaticforce, py::arg("input"), py::arg("E"), py::arg("epsilon"));
     m.def("predefinedmagnetostaticforce", &sl::predefinedmagnetostaticforce, py::arg("input"), py::arg("H"), py::arg("mu"));
 
-    m.def("predefinedacoustics", &sl::predefinedacoustics, py::arg("dofp"), py::arg("tfp"), py::arg("soundspeed"), py::arg("neperattenuation"));
+    m.def("predefinedacousticwave", &sl::predefinedacousticwave, py::arg("dofp"), py::arg("tfp"), py::arg("soundspeed"), py::arg("neperattenuation"));
     m.def("predefinedacousticradiation", &sl::predefinedacousticradiation, py::arg("dofp"), py::arg("tfp"), py::arg("soundspeed"), py::arg("neperattenuation"));
     m.def("predefinedacousticstructureinteraction", &sl::predefinedacousticstructureinteraction, py::arg("dofp"), py::arg("tfp"), py::arg("dofu"), py::arg("tfu"), py::arg("soundspeed"), py::arg("fluiddensity"), py::arg("normal"), py::arg("neperattenuation"), py::arg("scaling")=1.0);
 
