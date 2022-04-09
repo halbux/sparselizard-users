@@ -80,6 +80,9 @@ void init_sl(py::module &m)
     m.def("dtdt", &sl::dtdt, py::arg("input"));
     m.def("dtdtdt", &sl::dtdtdt, py::arg("input"));
     m.def("dtdtdtdt", &sl::dtdtdtdt, py::arg("input"));
+    
+    m.def("dt", &sl::dt, py::arg("input"), py::arg("initdt"), py::arg("initdtdt"));
+    m.def("dtdt", &sl::dtdt, py::arg("input"), py::arg("initdt"), py::arg("initdtdt"));
 
     m.def("sin", &sl::sin, py::arg("input"));
     m.def("cos", &sl::cos, py::arg("input"));
