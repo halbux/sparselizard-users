@@ -76,13 +76,13 @@ void init_sl(py::module &m)
     m.def("dy", &sl::dy, py::arg("input"));
     m.def("dz", &sl::dz, py::arg("input"));
 
-    m.def("dt", &sl::dt, py::arg("input"));
-    m.def("dtdt", &sl::dtdt, py::arg("input"));
+    m.def("dt", static_cast<expression (*)(expression)>(&sl::dt), py::arg("input"));
+    m.def("dtdt", static_cast<expression (*)(expression)>(&sl::dtdt), py::arg("input"));
     m.def("dtdtdt", &sl::dtdtdt, py::arg("input"));
     m.def("dtdtdtdt", &sl::dtdtdtdt, py::arg("input"));
     
-    m.def("dt", &sl::dt, py::arg("input"), py::arg("initdt"), py::arg("initdtdt"));
-    m.def("dtdt", &sl::dtdt, py::arg("input"), py::arg("initdt"), py::arg("initdtdt"));
+    m.def("dt", static_cast<expression (*)(expression, double, double)>(&sl::dt), py::arg("input"), py::arg("initdt"), py::arg("initdtdt"));
+    m.def("dtdt", static_cast<expression (*)(expression, double, double)>(&sl::dtdt), py::arg("input"), py::arg("initdt"), py::arg("initdtdt"));
 
     m.def("sin", &sl::sin, py::arg("input"));
     m.def("cos", &sl::cos, py::arg("input"));
