@@ -15,6 +15,8 @@ void init_genalpha(py::module &m)
 
         .def("settolerance", &genalpha::settolerance, py::arg("nltol"))
 
+        .def("setrelaxationfactor", &genalpha::setrelaxationfactor, py::arg("relaxfact"))
+        
         .def("gettimederivative", &genalpha::gettimederivative)
         .def("settimederivative", &genalpha::settimederivative, py::arg("sol"))
 
