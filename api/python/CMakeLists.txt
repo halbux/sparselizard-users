@@ -17,6 +17,7 @@ set (PYBIND11_DIR "/usr/include/pybind11")
 set (SPARSELIZARD_DIR "../../../sparselizard")
 set (SPARSELIZARD_SRC "${SPARSELIZARD_DIR}/src")
 
+set (GMSH_DIR "~/SLlibs/gmsh")
 set (PETSC_DIR "~/SLlibs/petsc")
 set (PETSC_ARCH "arch-linux-c-opt")
 
@@ -41,7 +42,7 @@ include_directories(
     ${SPARSELIZARD_SRC}/shapefunction/lagrange
 )
 
-include_directories(${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/include)
+include_directories(${GMSH_DIR}/include ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/include)
 
 include_directories(
     ${PYTHON_DIR}
@@ -77,6 +78,6 @@ add_library(spylizard SHARED
 #find_library(SPARSELIZARD_LIBRARY NAMES libsparselizard.so ${SPARSELIZARD_DIR})
 
 SET_TARGET_PROPERTIES(spylizard PROPERTIES PREFIX "")
-target_link_libraries(spylizard sparselizard petsc slepc)
-target_link_directories(spylizard PUBLIC ../../../sparselizard/build ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
+target_link_libraries(spylizard sparselizard gmsh petsc slepc)
+target_link_directories(spylizard PUBLIC ../../../sparselizard/build ${GMSH_DIR}/lib ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/lib)
 

@@ -21,7 +21,7 @@ def processmesh():
 
     # Rotate the mesh to easily select the bottom side for the periodic condition:
     mymesh1.rotate(0,0,30)
-    mymesh1.write("cmutperiodic.msh", 0)
+    mymesh1.write("cmutperiodic.msh")
 
     setphysicalregionshift(0)
 
@@ -36,7 +36,7 @@ def processmesh():
 
     # Rotate to the other direction to align the other region for the periodic condition:
     mymesh2.rotate(0,0,-60)
-    mymesh2.write("cmutperiodic.msh", 0)
+    mymesh2.write("cmutperiodic.msh")
 
     mymesh3 = mesh()
 
@@ -48,7 +48,7 @@ def processmesh():
     mymesh3.rotate(0,0,30)
 
     # Write the processed mesh:
-    mymesh3.write("cmutperiodic.msh", 0)
+    mymesh3.write("cmutperiodic.msh")
 
 
 processmesh()

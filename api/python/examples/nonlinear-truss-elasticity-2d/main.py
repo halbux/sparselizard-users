@@ -3,7 +3,7 @@ from spylizard import *
 solid = 1; clamp = 2; load = 3;
 
 # Load the GMSH 4 format mesh with petsc:
-mymesh = mesh("petsc:truss2d.msh", 1)
+mymesh = mesh("gmsh:truss2d.msh", 1)
 
 # Nodal shape functions 'h1' with 2 components for the mechanical displacement:
 u = field("h1xy")
