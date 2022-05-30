@@ -8,7 +8,15 @@ void init_sl(py::module &m)
     m.def("setmaxnumthreads", &sl::setmaxnumthreads, py::arg("mnt"));
     m.def("getmaxnumthreads", &sl::getmaxnumthreads);
 
+    m.def("getx", &sl::getx);
+    m.def("gety", &sl::gety);
+    m.def("getz", &sl::getz);
+
     m.def("getpi", &sl::getpi);
+    
+    m.def("getmu0", &sl::getmu0);
+    m.def("getepsilon0", &sl::getepsilon0);
+    
     m.def("getrandom", &sl::getrandom);
 
     m.def("selectunion", &sl::selectunion, py::arg("physregs"));
