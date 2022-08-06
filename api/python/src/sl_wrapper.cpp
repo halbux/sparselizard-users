@@ -20,7 +20,7 @@ void init_sl(py::module &m)
     m.def("getrandom", &sl::getrandom);
 
     m.def("selectunion", &sl::selectunion, py::arg("physregs"));
-    m.def("selectintersection", &sl::selectintersection, py::arg("physregs"));
+    m.def("selectintersection", &sl::selectintersection, py::arg("physregs"), py::arg("intersectdim"));
     m.def("selectall", &sl::selectall);
 
     m.def("isdefined", &sl::isdefined, py::arg("physreg"));
