@@ -100,7 +100,7 @@ void init_sl(py::module &m)
     m.def("atan", &sl::atan, py::arg("input"));
     m.def("abs", &sl::abs, py::arg("input"));
     m.def("sqrt", &sl::sqrt, py::arg("input"));
-    m.def("log10", &sl::log10, py::arg("input"));
+    m.def("log", &sl::log, py::arg("input"));
     m.def("exp", &sl::exp, py::arg("input"));
     m.def("pow", &sl::pow, py::arg("base"), py::arg("exponent"));
     m.def("mod", &sl::mod, py::arg("input"), py::arg("modval"));
@@ -138,6 +138,7 @@ void init_sl(py::module &m)
 
     m.def("crossproduct", &sl::crossproduct, py::arg("a"), py::arg("b"));
     m.def("doubledotproduct", &sl::doubledotproduct, py::arg("a"), py::arg("b"));
+    m.def("elementwiseproduct", &sl::elementwiseproduct, py::arg("a"), py::arg("b"));
     m.def("trace", &sl::trace, py::arg("a"));
 
     m.def("integral", static_cast<integration (*)(int, expression, int, int)>(&sl::integral), py::arg("physreg"), py::arg("tointegrate"), py::arg("integrationorderdelta")=0, py::arg("blocknumber")=0);
