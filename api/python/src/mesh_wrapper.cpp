@@ -19,7 +19,8 @@ void init_mesh(py::module &m)
         .def("load", static_cast<void (mesh::*)(std::vector<shape>, int)>(&mesh::load), py::arg("inputshapes"), py::arg("verbosity")=1)
         .def("load", static_cast<void (mesh::*)(std::vector<shape>, int, int, int)>(&mesh::load), py::arg("inputshapes"), py::arg("globalgeometryskin"), py::arg("numoverlaplayers"), py::arg("verbosity")=1)
 
-        .def("write", &mesh::write, py::arg("name"), py::arg("physregs")=std::vector<int>{-1}, py::arg("option")=1)
+        .def("write", static_cast<void (mesh::*)(int, std::string)>(&mesh::write), py::arg("physreg"), py::arg("name"))
+        .def("write", static_cast<void (mesh::*)(std::string, std::vector<int>, int)>(&mesh::write), py::arg("name"), py::arg("physregs")=std::vector<int>{-1}, py::arg("option")=1)
 
         .def("setadaptivity", &mesh::setadaptivity, py::arg("criterion"), py::arg("lownumsplits"), py::arg("highnumsplits"))
 
