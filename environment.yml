@@ -1,7 +1,0 @@
-name: example-environment
-channels:
-  - conda-forge
-dependencies:
-- pip
-- pip:
-  - spylizard
