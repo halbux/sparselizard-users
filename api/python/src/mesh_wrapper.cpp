@@ -22,7 +22,6 @@ void init_mesh(py::module &m)
         .def("write", static_cast<void (mesh::*)(int, std::string)>(&mesh::write), py::arg("physreg"), py::arg("name"))
         .def("write", static_cast<void (mesh::*)(std::string, std::vector<int>, int)>(&mesh::write), py::arg("name"), py::arg("physregs")=std::vector<int>{-1}, py::arg("option")=1)
 
-
         .def("setadaptivity", &mesh::setadaptivity, py::arg("criterion"), py::arg("lownumsplits"), py::arg("highnumsplits"))
 
         .def("split", &mesh::split, py::arg("n")=1)
