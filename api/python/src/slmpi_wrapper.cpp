@@ -1,9 +1,16 @@
 #include "sparselizard_wrapper.h"
 
+PYBIND11_MAKE_OPAQUE(std::vector<bool>);
+PYBIND11_MAKE_OPAQUE(std::vector<int>);
+PYBIND11_MAKE_OPAQUE(std::vector<double>);
+
 namespace py = pybind11;
 
 void init_slmpi(py::module &m)
 {
+    py::bind_vector<std::vector<bool> >(m, "VecBool");
+    py::bind_vector<std::vector<int> >(m, "VecInt");
+    py::bind_vector<std::vector<double> >(m, "VecDouble");
 
     m.def("isavailable", &slmpi::isavailable);
     
